@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e5863197-aa8e-4a2c-80c6-0650b86ddb82" name="Default Changelist" comment="" />
+    <list default="true" id="e5863197-aa8e-4a2c-80c6-0650b86ddb82" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -63,10 +65,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/manage/KafkaManagerComponent.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1784">
-              <caret line="9" column="68" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="68" />
+            <state relative-caret-position="136">
+              <caret line="137" column="11" lean-forward="true" selection-start-line="137" selection-start-column="11" selection-end-line="137" selection-end-column="11" />
               <folding>
                 <element signature="e#0#7588#0" expanded="true" />
+                <element signature="imports" expanded="true" />
                 <element signature="e#2273#2274#0" expanded="true" />
                 <element signature="e#2309#2310#0" expanded="true" />
               </folding>
@@ -75,6 +78,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-10">
@@ -152,6 +164,9 @@
       <dir>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.1.3.RELEASE/58e07f69638a3ca13dffe8a2b68d284af376d105/spring-boot-autoconfigure-2.1.3.RELEASE.jar</dir>
     </dirStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -197,6 +212,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/model/SchemaVersion.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -219,6 +235,7 @@
     <option name="width" value="1440" />
     <option name="height" value="804" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -234,182 +251,11 @@
             <path>
               <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
               <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="retrieve" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="retrieve" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="manage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
               <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
               <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="compents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="compents" type="462c0819:PsiDirectoryNode" />
-              <item name="consumer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="compents" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="compents" type="462c0819:PsiDirectoryNode" />
-              <item name="producer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="icons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -420,6 +266,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
@@ -634,17 +481,18 @@
       <updated>1561513457993</updated>
       <workItem from="1561513477515" duration="7094000" />
       <workItem from="1561523258394" duration="47983000" />
-      <workItem from="1561641897617" duration="33848000" />
+      <workItem from="1561641897617" duration="34020000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88925000" />
+    <option name="totallyTimeSpent" value="89097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="60" width="1440" height="804" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -654,7 +502,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286517" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3286517" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" visible="true" weight="0.3988764" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" visible="true" weight="0.3988764" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -714,19 +562,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.kafka/spring-kafka/2.2.2.RELEASE/c73e6ac211da0002b604c57bcc247a6dab74a8a5/spring-kafka-2.2.2.RELEASE-sources.jar!/org/springframework/kafka/core/ConsumerFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="80" column="33" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="33" />
-          <folding>
-            <element signature="e#1224#1225#0" expanded="true" />
-            <element signature="e#1258#1259#0" expanded="true" />
-            <element signature="e#1517#1518#0" expanded="true" />
-            <element signature="e#1567#1568#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.kafka/spring-kafka/2.2.2.RELEASE/c73e6ac211da0002b604c57bcc247a6dab74a8a5/spring-kafka-2.2.2.RELEASE-sources.jar!/org/springframework/kafka/core/DefaultKafkaConsumerFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="571">
@@ -1142,18 +977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/manage/KafkaManagerComponent.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1784">
-          <caret line="9" column="68" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#7588#0" expanded="true" />
-            <element signature="e#2273#2274#0" expanded="true" />
-            <element signature="e#2309#2310#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10">
@@ -1161,6 +984,26 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/manage/KafkaManagerComponent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="137" column="11" lean-forward="true" selection-start-line="137" selection-start-column="11" selection-end-line="137" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#7588#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2273#2274#0" expanded="true" />
+            <element signature="e#2309#2310#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
