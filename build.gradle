@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.7'
+}
+
+group 'com.github.aidensuen'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+
+apply plugin: "org.jetbrains.intellij"
+apply plugin: "java"
+apply plugin: "idea"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.apache.avro', name: 'avro', version: '1.9.0'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-stream-kafka', version: '2.1.1.RELEASE'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    pluginName 'Kafka Tool'
+    version '2019.1.2'
+    updateSinceUntilBuild false
+}
+patchPluginXml {
+    changeNotes """
+    
+     """
+}

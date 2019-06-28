@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>com.github.aidensuen.kafkatool</id>
+    <name>Kafkatool</name>
+    <version>1.0.0</version>
+    <vendor email="AbnerSun2016@163.com">Aidensuen</vendor>
+    <description>
+        Features:
+        &lt;ul&gt;
+        &lt;li&gt;Avro Model Project Dependency Scanner&lt;/li&gt;
+        &lt;li&gt;Kafka Producer&lt;/li&gt;
+        &lt;li&gt;Kafka Producer History&lt;/li&gt;
+        &lt;li&gt;String Serialization/Deserialization&lt;/li&gt;
+        &lt;li&gt;Kafka Avro Serialization/Deserialization&lt;/li&gt;
+        &lt;li&gt;Topic Viewer&lt;/li&gt;
+        &lt;li&gt;Schema Registry Viewer&lt;/li&gt;
+        &lt;/ul&gt;
+    </description>
+    <idea-version since-build="191"/>
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent"/>
+        <toolWindow id="Kafka Tool" icon="/icons/kafka-icon_13x13.png" anchor="right" secondary="false" factoryClass="com.github.aidensuen.kafkatool.KafkaToolWindow"/>
+    </extensions>
+</idea-plugin>
