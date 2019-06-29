@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5863197-aa8e-4a2c-80c6-0650b86ddb82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/SuccessNotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/model/Subject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" afterDir="false" />
@@ -13,51 +11,38 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/service/KafkaManagerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/service/KafkaManagerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/config/AppConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/config/AppConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/service/KafkaManagerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/service/KafkaManagerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/config/AppConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/config/AppConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/config/options/recentProjects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/config/options/recentProjects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/config/options/updates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/config/options/updates.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/notify/model/KafkaToolNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/common/notify/model/KafkaToolNotification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerContainerComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main-instrumented/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerContainerComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/notify/model/KafkaToolNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/common/notify/model/KafkaToolNotification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerContainerComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerContainerComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/config/port" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/plugins/Kafka Tool/lib/KafkaTool-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/plugins/Kafka Tool/lib/KafkaTool-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/plugins/Kafka Tool/lib/kafka-clients-2.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/plugins/Kafka Tool/lib/lz4-java-1.4.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/plugins/Kafka Tool/lib/snappy-java-1.1.7.1.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/attrib.dat.storageData" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/attrib.dat.storageData" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/attrib.dat.storageRecordIndex" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/attrib.dat.storageRecordIndex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/content.dat.storageData" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/content.dat.storageData" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/content.dat.storageRecordIndex" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/content.dat.storageRecordIndex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/contentHashes.dat" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/contentHashes.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/contentHashes.dat.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/contentHashes.dat.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/contentHashes.dat.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/contentHashes.dat.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/contentHashes.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/contentHashes.dat_i" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/names.dat" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/names.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/names.dat.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/names.dat.keystream" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/names.dat.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/names.dat.keystream.len" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/names.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/names.dat_i" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/records.dat" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/records.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/caches/records.dat.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/caches/records.dat.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/conversion/untitled_folder4758b4e5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/conversion/untitled_folder4758b4e5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/frameworks/detection/untitled folder.4758b4e5/files" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/frameworks/detection/untitled folder.4758b4e5/files" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/log/idea.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/log/idea.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/token" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/token" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/vcs-users/4758b4e5.2" beforeDir="false" afterPath="$PROJECT_DIR$/build/idea-sandbox/system/vcs-users/4758b4e5.2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/port" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/idea-sandbox/system/token" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/KafkaTool-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/KafkaTool-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/KafkaToolNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/KafkaToolNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/KafkaManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/KafkaManagerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/AvroJsonGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/AvroJsonGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/model/SchemaVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/model/SchemaVersion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerContainerComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerContainerComponent.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -94,6 +79,24 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="KafkaTool" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="KafkaTool" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="KafkaTool" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="KafkaTool" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
@@ -110,60 +113,7 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/common/notify/impl/NotificationServiceImpl.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
-              <folding>
-                <element signature="e#552#553#0" expanded="true" />
-                <element signature="e#605#606#0" expanded="true" />
-                <element signature="e#666#667#0" expanded="true" />
-                <element signature="e#719#720#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/SuccessNotification.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#566#567#0" expanded="true" />
-                <element signature="e#621#622#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-                <element signature="e#737#738#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
-              <folding>
-                <element signature="e#813#814#0" expanded="true" />
-                <element signature="e#887#888#0" expanded="true" />
-                <element signature="e#1078#1079#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -175,9 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>KafkaProducerProvider</find>
-      <find>getAvroSchema</find>
-      <find>avroClassMap</find>
       <find>AvroJsonGenerator</find>
       <find>ProducerHistoryEntry</find>
       <find>addProducerHistoryEntry</find>
@@ -205,6 +152,9 @@
       <find>listSubjectVersions</find>
       <find>SchemaRegistryService</find>
       <find>SchemaVersion</find>
+      <find>kafkaa</find>
+      <find>org.apache.avro</find>
+      <find>KafkaAvroDeserializer</find>
     </findStrings>
     <replaceStrings>
       <replace>message</replace>
@@ -250,12 +200,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/service/impl/AvroClassScannerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/DefaultKafkaProducerProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/exception/JsonToAvroException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/AvroJsonGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/service/DefaultJsonNodeToAvroAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/service/impl/DefaultKafkaProducerProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/settings/KafkaSettingsComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerContainerComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/service/KafkaProducerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/service/impl/KafkaProducerServiceImpl.java" />
@@ -263,22 +211,25 @@
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/model/SchemaVersion.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/config/AppConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/model/Subject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/KafkaManagerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/manager/KafkaManagerComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/KafkaToolNotification.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/SuccessNotification.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerContainerComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/AvroJsonGenerator.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.java" />
       </list>
     </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
         <option name="mavenHome" value="$USER_HOME$/DevelopmentEnvironment/apache-maven-3.5.0" />
         <option name="userSettingsFile" value="$USER_HOME$/DevelopmentEnvironment/apache-maven-3.5.0/conf/settings.xml" />
       </MavenGeneralSettings>
@@ -287,6 +238,7 @@
       <MavenImportingSettings>
         <option name="downloadDocsAutomatically" value="true" />
         <option name="downloadSourcesAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
   </component>
@@ -297,7 +249,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="60" />
+    <option name="x" value="22" />
+    <option name="y" value="41" />
     <option name="width" value="1440" />
     <option name="height" value="804" />
   </component>
@@ -357,29 +310,7 @@
               <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
               <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="notify" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="notify" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="notify" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="retrieve" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
@@ -390,6 +321,7 @@
               <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
               <item name="retrieve" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
@@ -398,13 +330,9 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="bettercloud" type="462c0819:PsiDirectoryNode" />
               <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="manage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kafkasoft" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="icons" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="retrieve" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
@@ -457,26 +385,14 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="notify" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KafkaTool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KafkaTool" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kafkatool" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="notify" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -491,7 +407,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -513,7 +429,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.KafkaTool [runIde]">
+  <component name="RunManager" selected="Gradle.KafkaTool [build]">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -675,9 +591,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.KafkaTool [build]" />
         <item itemvalue="Gradle.KafkaTool [runIde]" />
         <item itemvalue="Gradle.KafkaTool [clean]" />
-        <item itemvalue="Gradle.KafkaTool [build]" />
         <item itemvalue="Gradle.KafkaTool [verifyPlugin]" />
         <item itemvalue="Gradle.KafkaTool [runIde] (1)" />
       </list>
@@ -695,18 +611,19 @@
       <updated>1561513457993</updated>
       <workItem from="1561513477515" duration="7094000" />
       <workItem from="1561523258394" duration="47983000" />
-      <workItem from="1561641897617" duration="41742000" />
+      <workItem from="1561641897617" duration="42607000" />
+      <workItem from="1561818490965" duration="558000" />
+      <workItem from="1561819486078" duration="1581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96819000" />
+    <option name="totallyTimeSpent" value="99823000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="60" width="1440" height="804" extended-state="0" />
-    <editor active="true" />
+    <frame x="22" y="41" width="1440" height="804" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26037195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -727,18 +644,18 @@
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007153" side_tool="true" weight="0.3988764" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="right" id="Coverage" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.3297568" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.3297568" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Gradle" order="6" weight="0.23676682" />
+      <window_info anchor="right" id="Gradle" order="6" visible="true" weight="0.23676682" />
       <window_info anchor="right" id="Database" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="right" id="Bean Validation" order="10" />
+      <window_info anchor="right" id="Coverage" order="11" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -776,68 +693,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2019.1.2/2486c222807a936fbfad8cee5f43f949c874598e/ideaIC-2019.1.2-sources.jar!/com/intellij/openapi/roots/ui/configuration/artifacts/LayoutTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-182">
-          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2019.1.2/2486c222807a936fbfad8cee5f43f949c874598e/ideaIC-2019.1.2-sources.jar!/com/intellij/ide/ui/laf/darcula/ui/DarculaTreeUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <element signature="e#859#942#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2019.1.2/2486c222807a936fbfad8cee5f43f949c874598e/ideaIC-2019.1.2-sources.jar!/com/intellij/ide/plugins/newui/RestartButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="e#1466#1467#0" expanded="true" />
-            <element signature="e#1498#1499#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2019.1.2/2486c222807a936fbfad8cee5f43f949c874598e/ideaIC-2019.1.2-sources.jar!/com/intellij/ide/ui/RoundedActionButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2019.1.2/2486c222807a936fbfad8cee5f43f949c874598e/ideaIC-2019.1.2-sources.jar!/com/intellij/ide/plugins/newui/UpdateButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="10" column="39" lean-forward="true" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2019.1.2/2486c222807a936fbfad8cee5f43f949c874598e/ideaIC-2019.1.2-sources.jar!/com/intellij/ide/plugins/newui/ColorButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/producer/KafkaProducerComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="111" column="51" lean-forward="true" selection-start-line="111" selection-start-column="51" selection-end-line="111" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/compents/consumer/KafkaConsumerComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -917,43 +772,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/actions/ReimportAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" selection-start-column="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsManagerWatcher.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsProcessorBasicTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsProcessor.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsManagerState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/actions/ReimportAction.java" />
+    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsManager.java" />
+    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsManagerWatcher.java" />
+    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsProcessorBasicTask.java" />
+    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsProcessor.java" />
+    <entry file="file://$USER_HOME$/Desktop/maven.jar.src/org/jetbrains/idea/maven/project/MavenProjectsManagerState.java" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2019.1.2/2486c222807a936fbfad8cee5f43f949c874598e/ideaIC-2019.1.2-sources.jar!/com/intellij/ui/treeStructure/Tree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -991,13 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="22" column="64" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/config/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
@@ -1030,16 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-219">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/common/retrieve/model/Subject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="57" column="1" selection-start-line="8" selection-end-line="57" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#1446#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1095,16 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
           <caret line="97" column="44" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-254">
-          <caret line="137" column="51" lean-forward="true" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1175,19 +972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
-          <folding>
-            <element signature="e#552#553#0" expanded="true" />
-            <element signature="e#605#606#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/KafkaToolNotification.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1205,11 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/common/notify/impl/NotificationServiceImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/impl/NotificationServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
@@ -1219,6 +998,100 @@
             <element signature="e#887#888#0" expanded="true" />
             <element signature="e#1078#1079#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/notify/model/ErrorNotification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+          <folding>
+            <element signature="e#552#553#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+            <element signature="e#719#720#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/common/notify/impl/NotificationServiceImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-96" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.10.3-all/81msde2dx9p4vji0mjgtvxkcb/gradle-4.10.3/src/core-api/org/gradle/api/artifacts/dsl/RepositoryHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="182" column="28" selection-start-line="182" selection-start-column="28" selection-end-line="182" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.9.8/f66792d499a6fea6c7a743558f940e0ebf775ce3/jackson-databind-2.9.8-sources.jar!/com/fasterxml/jackson/databind/node/ObjectNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5627">
+          <caret line="423" column="20" selection-start-line="423" selection-start-column="20" selection-end-line="423" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/common/retrieve/model/Subject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="57" column="1" selection-start-line="8" selection-end-line="57" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/common/retrieve/model/Topic.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#897#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/common/retrieve/model/SchemaVersion.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#1947#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Kafkasoft/classes/com/bettercloud/kafkatool/common/retrieve/model/SchemaCompatibilityResponse.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#531#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/service/impl/KafkaManagerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/aidensuen/kafkatool/common/AvroJsonGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="68" column="47" lean-forward="true" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
         </state>
       </provider>
     </entry>

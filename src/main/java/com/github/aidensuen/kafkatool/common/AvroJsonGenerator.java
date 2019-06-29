@@ -70,7 +70,7 @@ public class AvroJsonGenerator {
         ObjectNode objectNode = new ObjectNode(JsonNodeFactory.instance);
         List<Field> fields = schema.getFields();
         fields.forEach((field) -> {
-            objectNode.put(field.name(), this.generate(field.schema(), unionSelector));
+            objectNode.replace(field.name(), this.generate(field.schema(), unionSelector));
         });
         return objectNode;
     }

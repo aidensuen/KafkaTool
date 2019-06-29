@@ -2344,3 +2344,91 @@ Example: args.urlSchemes = ["your-protocol"] will handle following links: your-p
 2019-06-29 21:59:51,026 [ 427638]   INFO - rationStore.ComponentStoreImpl - Saving Project '/Users/Jean/Desktop/untitled folder' untitled folderKotlinCommonCompilerArguments took 29 ms 
 2019-06-29 21:59:51,030 [ 427642]   INFO - mponents.impl.stores.StoreUtil - saveProjectsAndApp took 144 ms 
 2019-06-29 22:00:49,346 [ 485958]   INFO - mponents.impl.stores.StoreUtil - saveProjectsAndApp took 111 ms 
+2019-06-29 23:00:09,570 [      1]   INFO -        #com.intellij.idea.Main - ------------------------------------------------------ IDE STARTED ------------------------------------------------------ 
+2019-06-29 23:00:09,909 [    340]   INFO -        #com.intellij.idea.Main - IDE: IntelliJ IDEA (build #IC-191.7141.44, 07 May 2019 19:59) 
+2019-06-29 23:00:09,909 [    340]   INFO -        #com.intellij.idea.Main - OS: Mac OS X (10.14, x86_64) 
+2019-06-29 23:00:09,909 [    340]   INFO -        #com.intellij.idea.Main - JRE: 1.8.0_202-release-1483-b49 (JetBrains s.r.o) 
+2019-06-29 23:00:09,910 [    341]   INFO -        #com.intellij.idea.Main - JVM: 25.202-b49 (OpenJDK 64-Bit Server VM) 
+2019-06-29 23:00:09,947 [    378]   INFO -        #com.intellij.idea.Main - JVM Args: -Dapple.awt.fileDialogForDirectories=true -Dapple.laf.useScreenMenuBar=true -Didea.classpath.index.enabled=false -Didea.config.path=/Users/Jean/Documents/java_workspace/KafkaTool/build/idea-sandbox/config -Didea.is.internal=true -Didea.platform.prefix=Idea -Didea.plugins.path=/Users/Jean/Documents/java_workspace/KafkaTool/build/idea-sandbox/plugins -Didea.required.plugins.id=com.github.aidensuen.kafkatool -Didea.smooth.progress=false -Didea.system.path=/Users/Jean/Documents/java_workspace/KafkaTool/build/idea-sandbox/system -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=CN -Duser.language=en -Duser.variant -ea 
+2019-06-29 23:00:09,948 [    379]   INFO -        #com.intellij.idea.Main - ext: /Users/Jean/.gradle/caches/modules-2/files-2.1/com.jetbrains/jbre/jbrx-8u202-osx-x64-b1483.49/jdk/Contents/Home/jre/lib/ext: [sunec.jar, nashorn.jar, cldrdata.jar, jfxrt.jar, dnsns.jar, localedata.jar, sunjce_provider.jar, meta-index, sunpkcs11.jar, jaccess.jar, zipfs.jar] 
+2019-06-29 23:00:09,948 [    379]   INFO -        #com.intellij.idea.Main - ext: /System/Library/Java/Extensions: [MRJToolkit.jar] 
+2019-06-29 23:00:09,948 [    379]   INFO -        #com.intellij.idea.Main - charsets: JNU=UTF-8 file=UTF-8 
+2019-06-29 23:00:09,991 [    422]   INFO -        #com.intellij.idea.Main - JNA library (64-bit) loaded in 42 ms 
+2019-06-29 23:00:10,158 [    589]   INFO - .intellij.idea.IdeaApplication - CPU cores: 4; ForkJoinPool.commonPool: java.util.concurrent.ForkJoinPool@15e8f435[Running, parallelism = 4, size = 0, active = 0, running = 0, steals = 0, tasks = 0, submissions = 0]; factory: com.intellij.concurrency.IdeaForkJoinWorkerThreadFactory@3d4d4906 
+2019-06-29 23:00:11,158 [   1589]   INFO - llij.ide.plugins.PluginManager - Cannot find optional descriptor duplicates-groovy.xml 
+2019-06-29 23:00:11,160 [   1591]   INFO - llij.ide.plugins.PluginManager - Cannot find optional descriptor duplicates-detection-groovy.xml 
+2019-06-29 23:00:11,541 [   1972]   INFO - llij.ide.plugins.PluginManager - load plugin descriptors took 906 ms 
+2019-06-29 23:00:11,783 [   2214]   INFO - llij.ide.plugins.PluginManager - 35 plugins initialized in 1163 ms 
+2019-06-29 23:00:11,799 [   2230]   INFO - llij.ide.plugins.PluginManager - Loaded bundled plugins: Android Support (10.3.3), Ant Support (191.7141.44), Bytecode Viewer (191.7141.44), Copyright (191.7141.44), Coverage (191.7141.44), Eclipse Integration (191.7141.44), EditorConfig (191.7141.44), Git Integration (191.7141.44), GitHub (191.7141.44), Gradle (191.7141.44), Groovy (191.7141.44), I18n for Java (191.7141.44), IDEA CORE (191.7141.44), IntelliJ Configuration Script (191.7141.44), IntelliLang (191.7141.44), JUnit (191.7141.44), Java Bytecode Decompiler (191.7141.44), Java Stream Debugger (191.7141.44), JavaFX (191.7141.44), Kotlin (1.3.21-release-IJ2019.1-3), Maven Integration (191.7141.44), Mercurial Integration (191.7141.44), Plugin DevKit (191.7141.44), Properties Support (191.7141.44), Settings Repository (191.7141.44), Smali Support (191.7141.44), Subversion (191.7141.44), Task Management (191.7141.44), Terminal (191.7141.44), TestNG-J (191.7141.44), UI Designer (191.7141.44), XPathView + XSLT Support (191.7141.44), XSLT-Debugger (191.7141.44), YAML (191.7141.44) 
+2019-06-29 23:00:11,799 [   2230]   INFO - llij.ide.plugins.PluginManager - Loaded custom plugins: Kafkatool (1.0.0) 
+2019-06-29 23:00:12,003 [   2434]   INFO -     #com.intellij.util.ui.JBUI - User scale factor: 1.0 
+2019-06-29 23:00:12,004 [   2435]   INFO -     #com.intellij.util.ui.JBUI - System scale factor: 1.0 (JRE-managed HiDPI) 
+2019-06-29 23:00:14,957 [   5388]   INFO - pi.util.registry.RegistryState - Registry values changed by user: 
+2019-06-29 23:00:14,958 [   5389]   INFO - pi.util.registry.RegistryState -   java.completion.argument.hints.internal = false 
+2019-06-29 23:00:14,975 [   5406]   INFO - pi.util.registry.RegistryState - Experimental features enabled for user: inline.browse.button, linux.native.menu, recent.and.edited.files.together 
+2019-06-29 23:00:15,018 [   5449]   INFO - ellij.util.io.PagedFileStorage - lower=100; upper=435; buffer=10; max=435 
+2019-06-29 23:00:15,155 [   5586]   INFO - pl.local.NativeFileWatcherImpl - Native file watcher is disabled 
+2019-06-29 23:00:17,277 [   7708]   INFO - til.net.ssl.CertificateManager - Default SSL context initialized 
+2019-06-29 23:00:17,284 [   7715]   WARN - com.intellij.util.xmlb.Binding - no accessors for interface com.intellij.openapi.extensions.PluginDescriptor 
+2019-06-29 23:00:17,296 [   7727]   INFO - rains.ide.BuiltInServerManager - built-in server started, port 63343 
+2019-06-29 23:00:17,560 [   7991]   INFO - m.intellij.ui.mac.touchbar.NST - The graphics environment is headless, skip nst loading 
+2019-06-29 23:00:17,967 [   8398]   INFO - il.indexing.FileBasedIndexImpl - Index exts enumerated:312, number of extensions:47 
+2019-06-29 23:00:17,997 [   8428]   INFO - il.indexing.FileBasedIndexImpl - Index scheduled:30 
+2019-06-29 23:00:18,065 [   8496]   INFO - tellij.psi.stubs.StubIndexImpl - All stub exts enumerated:51, number of extensions:50 
+2019-06-29 23:00:18,066 [   8497]   INFO - tellij.psi.stubs.StubIndexImpl - stub exts update scheduled:1 
+2019-06-29 23:00:18,731 [   9162]   INFO - plication.impl.ApplicationImpl - 74 application components initialized in 6657ms 
+2019-06-29 23:00:19,117 [   9548]   INFO - ellij.project.impl.ProjectImpl - 20 project components initialized in 364 ms 
+2019-06-29 23:00:19,771 [  10202]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: language for id: preferences.language.Kotlin.scripting 
+2019-06-29 23:00:20,689 [  11120]   INFO - pl$FileIndexDataInitialization - Initialization done:2691 
+2019-06-29 23:00:20,949 [  11380]   INFO - exImpl$StubIndexInitialization - Initialization done:260 
+2019-06-29 23:00:26,866 [  17297]   INFO - com.intellij.ide.ui.UISettings - Loaded: fontSize=12, fontScale=1.0; restored: fontSize=12, fontScale=1.0 
+2019-06-29 23:00:28,386 [  18817]   INFO - CompilerWorkspaceConfiguration - Available processors: 4 
+2019-06-29 23:00:31,422 [  21853]   INFO - com.intellij.ide.ui.UISettings - Loaded: fontSize=12, fontScale=1.0; restored: fontSize=12, fontScale=1.0 
+2019-06-29 23:01:01,399 [  51830]   INFO - stubs.SerializationManagerImpl - START StubSerializationManager SHUTDOWN 
+2019-06-29 23:01:01,405 [  51836]   INFO - stubs.SerializationManagerImpl - END StubSerializationManager SHUTDOWN 
+2019-06-29 23:01:01,405 [  51836]   INFO - il.indexing.FileBasedIndexImpl - START INDEX SHUTDOWN 
+2019-06-29 23:01:01,460 [  51891]   INFO - il.indexing.FileBasedIndexImpl - END INDEX SHUTDOWN 
+2019-06-29 23:01:01,466 [  51897]   INFO - org.jetbrains.io.BuiltInServer - web server stopped 
+2019-06-29 23:01:01,467 [  51898]   INFO - Types.impl.FileTypeManagerImpl - FileTypeManager: 0 auto-detected files
+Elapsed time on auto-detect: 0 ms 
+2019-06-29 23:01:01,503 [  51934]   INFO - newvfs.persistent.PersistentFS - VFS dispose started 
+2019-06-29 23:01:01,505 [  51936]   INFO - newvfs.persistent.PersistentFS - VFS dispose completed 
+2019-06-29 23:01:01,507 [  51938]   INFO - plication.impl.ApplicationImpl - Write action Statistics:
+Event number:     0
+Total time spent: 0ms
+Average duration: 0ms
+Median  duration: 0ms
+Max     duration: 0ms (it was 'null') 
+2019-06-29 23:01:01,507 [  51938]   INFO - plication.impl.ApplicationImpl - AnAction.update() Statistics:
+Event number:     0
+Total time spent: 0ms
+Average duration: 0ms
+Median  duration: 0ms
+Max     duration: 0ms (it was 'null') 
+2019-06-29 23:01:01,509 [  51940]   INFO - plication.impl.ApplicationImpl - Global instance threads created counter = 5; ProcessIOExecutorService threads: 0 
+2019-06-29 23:01:01,511 [  51942]   INFO -        #com.intellij.idea.Main - ------------------------------------------------------ IDE SHUTDOWN ------------------------------------------------------ 
+2019-06-29 23:01:01,513 [  51944]   INFO - org.jetbrains.io.BuiltInServer - web server stopped 
+2019-06-29 23:13:02,041 [      0]   INFO -        #com.intellij.idea.Main - ------------------------------------------------------ IDE STARTED ------------------------------------------------------ 
+2019-06-29 23:13:02,327 [    286]   INFO -        #com.intellij.idea.Main - IDE: IntelliJ IDEA (build #IC-191.7141.44, 07 May 2019 19:59) 
+2019-06-29 23:13:02,327 [    286]   INFO -        #com.intellij.idea.Main - OS: Mac OS X (10.14, x86_64) 
+2019-06-29 23:13:02,327 [    286]   INFO -        #com.intellij.idea.Main - JRE: 1.8.0_202-release-1483-b49 (JetBrains s.r.o) 
+2019-06-29 23:13:02,327 [    286]   INFO -        #com.intellij.idea.Main - JVM: 25.202-b49 (OpenJDK 64-Bit Server VM) 
+2019-06-29 23:13:02,372 [    331]   INFO -        #com.intellij.idea.Main - JVM Args: -Dapple.awt.fileDialogForDirectories=true -Dapple.laf.useScreenMenuBar=true -Didea.classpath.index.enabled=false -Didea.config.path=/Users/Jean/Documents/java_workspace/KafkaTool/build/idea-sandbox/config -Didea.is.internal=true -Didea.platform.prefix=Idea -Didea.plugins.path=/Users/Jean/Documents/java_workspace/KafkaTool/build/idea-sandbox/plugins -Didea.required.plugins.id=com.github.aidensuen.kafkatool -Didea.smooth.progress=false -Didea.system.path=/Users/Jean/Documents/java_workspace/KafkaTool/build/idea-sandbox/system -agentlib:jdwp=transport=dt_socket,server=n,suspend=y,address=57190 -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=CN -Duser.language=en -Duser.variant -ea 
+2019-06-29 23:13:02,373 [    332]   INFO -        #com.intellij.idea.Main - ext: /Users/Jean/.gradle/caches/modules-2/files-2.1/com.jetbrains/jbre/jbrx-8u202-osx-x64-b1483.49/jdk/Contents/Home/jre/lib/ext: [sunec.jar, nashorn.jar, cldrdata.jar, jfxrt.jar, dnsns.jar, localedata.jar, sunjce_provider.jar, meta-index, sunpkcs11.jar, jaccess.jar, zipfs.jar] 
+2019-06-29 23:13:02,373 [    332]   INFO -        #com.intellij.idea.Main - ext: /System/Library/Java/Extensions: [MRJToolkit.jar] 
+2019-06-29 23:13:02,374 [    333]   INFO -        #com.intellij.idea.Main - charsets: JNU=UTF-8 file=UTF-8 
+2019-06-29 23:13:02,412 [    371]   INFO -        #com.intellij.idea.Main - JNA library (64-bit) loaded in 38 ms 
+2019-06-29 23:13:02,541 [    500]   INFO - .intellij.idea.IdeaApplication - CPU cores: 4; ForkJoinPool.commonPool: java.util.concurrent.ForkJoinPool@45c87eb5[Running, parallelism = 4, size = 0, active = 0, running = 0, steals = 0, tasks = 0, submissions = 0]; factory: com.intellij.concurrency.IdeaForkJoinWorkerThreadFactory@453d89c9 
+2019-06-29 23:13:03,725 [   1684]   INFO - llij.ide.plugins.PluginManager - Cannot find optional descriptor duplicates-groovy.xml 
+2019-06-29 23:13:03,726 [   1685]   INFO - llij.ide.plugins.PluginManager - Cannot find optional descriptor duplicates-detection-groovy.xml 
+2019-06-29 23:13:03,958 [   1917]   INFO - llij.ide.plugins.PluginManager - load plugin descriptors took 861 ms 
+2019-06-29 23:13:04,141 [   2100]   INFO - llij.ide.plugins.PluginManager - 35 plugins initialized in 1068 ms 
+2019-06-29 23:13:04,144 [   2103]   INFO - llij.ide.plugins.PluginManager - Loaded bundled plugins: Android Support (10.3.3), Ant Support (191.7141.44), Bytecode Viewer (191.7141.44), Copyright (191.7141.44), Coverage (191.7141.44), Eclipse Integration (191.7141.44), EditorConfig (191.7141.44), Git Integration (191.7141.44), GitHub (191.7141.44), Gradle (191.7141.44), Groovy (191.7141.44), I18n for Java (191.7141.44), IDEA CORE (191.7141.44), IntelliJ Configuration Script (191.7141.44), IntelliLang (191.7141.44), JUnit (191.7141.44), Java Bytecode Decompiler (191.7141.44), Java Stream Debugger (191.7141.44), JavaFX (191.7141.44), Kotlin (1.3.21-release-IJ2019.1-3), Maven Integration (191.7141.44), Mercurial Integration (191.7141.44), Plugin DevKit (191.7141.44), Properties Support (191.7141.44), Settings Repository (191.7141.44), Smali Support (191.7141.44), Subversion (191.7141.44), Task Management (191.7141.44), Terminal (191.7141.44), TestNG-J (191.7141.44), UI Designer (191.7141.44), XPathView + XSLT Support (191.7141.44), XSLT-Debugger (191.7141.44), YAML (191.7141.44) 
+2019-06-29 23:13:04,144 [   2103]   INFO - llij.ide.plugins.PluginManager - Loaded custom plugins: Kafkatool (1.0.0) 
+2019-06-29 23:13:04,258 [   2217]   INFO -     #com.intellij.util.ui.JBUI - User scale factor: 1.0 
+2019-06-29 23:13:04,259 [   2218]   INFO -     #com.intellij.util.ui.JBUI - System scale factor: 1.0 (JRE-managed HiDPI) 
+2019-06-29 23:13:06,338 [   4297]   INFO - pi.util.registry.RegistryState - Registry values changed by user: 
+2019-06-29 23:13:06,338 [   4297]   INFO - pi.util.registry.RegistryState -   java.completion.argument.hints.internal = false 
+2019-06-29 23:13:06,355 [   4314]   INFO - pi.util.registry.RegistryState - Experimental features enabled for user: inline.browse.button, linux.native.menu, recent.and.edited.files.together 
+2019-06-29 23:13:06,427 [   4386]   INFO - ellij.util.io.PagedFileStorage - lower=100; upper=435; buffer=10; max=435 
+2019-06-29 23:13:06,576 [   4535]   INFO - pl.local.NativeFileWatcherImpl - Native file watcher is disabled 

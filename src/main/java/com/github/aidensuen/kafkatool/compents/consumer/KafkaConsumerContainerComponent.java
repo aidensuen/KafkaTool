@@ -69,7 +69,7 @@ public class KafkaConsumerContainerComponent implements KafkaToolComponent, Dumb
 
     @Override
     public Content getContent(@NotNull Project project) {
-        //this.deserializerComboBox.addItem("KafkaAvroDeserializer");
+        this.deserializerComboBox.addItem("KafkaAvroDeserializer");
         this.deserializerComboBox.addItem("StringDeserializer");
         this.createConsumerButton.addActionListener((e) -> {
             String topic = this.topicTextField.getText();
