@@ -1,9 +1,11 @@
 package com.github.aidensuen.kafkatool.common.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aidensuen.kafkatool.common.Function;
 import com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent;
 import com.github.aidensuen.kafkatool.common.notify.model.ErrorNotification;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
+import com.github.aidensuen.kafkatool.model.Subject;
 import com.intellij.notification.Notifications;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.PartitionInfo;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.Duration;
 import java.util.*;
@@ -39,6 +42,12 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
 
     @Autowired
     private ExecutorService executorService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     public KafkaManagerServiceImpl() {
     }
@@ -74,7 +83,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
                     throw e;
                 }
             } catch (Exception e) {
-                Notifications.Bus.notify(ErrorNotification.create("Failed to refresh topic list. Is kafka running?"));
+                Notifications.Bus.notify(ErrorNotification.create("Failed to refresh topic list.\n" + e.getMessage()));
                 map = new HashMap<>();
             } finally {
                 function.callBack(map);
@@ -98,10 +107,38 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
                     }
                 }
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
             } finally {
                 function.callBack(Optional.of(consumerRecords));
             }
+        });
+    }
+
+    @Override
+    public void listSubjects(Function<List<Subject>> function) {
+        String listSubjectsUrl = String.format("%s/subjects", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl());
+        this.executorService.submit(() -> {
+            try {
+                function.callBack(this.restTemplate.getForObject(listSubjectsUrl, List.class, new Object[0]));
+            } catch (Exception e) {
+                Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
+                function.callBack(new ArrayList<>());
+            }
+        });
+    }
+
+    @Override
+    public void deleteSchema(String subject, String version, Function<Boolean> function) {
+        String url = String.format("%s/subjects/%s/versions/%s", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject, version);
+        this.executorService.submit(() -> {
+            try {
+                this.restTemplate.delete(url, new Object[0]);
+                function.callBack(true);
+            } catch (Exception e) {
+                Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
+                function.callBack(false);
+            }
+
         });
     }
 
@@ -138,5 +175,21 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
 
     public void setExecutorService(ExecutorService executorService) {
         this.executorService = executorService;
+    }
+
+    public ObjectMapper getObjectMapper() {
+        return objectMapper;
+    }
+
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
+    public RestTemplate getRestTemplate() {
+        return restTemplate;
+    }
+
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 }

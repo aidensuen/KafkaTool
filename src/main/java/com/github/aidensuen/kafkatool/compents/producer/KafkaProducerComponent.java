@@ -109,6 +109,7 @@ public class KafkaProducerComponent implements KafkaToolComponent, DumbAware {
         jPanel1.add(topicRefreshButton);
 
         selectedTopicField = new JTextField();
+        selectedTopicField.setToolTipText("Topic");
 
         topicPanel.add(jPanel1);
         topicPanel.add(selectedTopicField);
@@ -209,7 +210,7 @@ public class KafkaProducerComponent implements KafkaToolComponent, DumbAware {
                 Integer partition = 0;
                 try {
                     partition = Integer.valueOf(this.partitionField.getText());
-                }catch (Exception r1){
+                } catch (Exception r1) {
                     partition = 0;
                 }
                 this.kafkaProducerService.produceMessage(this.selectedTopicField.getText(), partition, String.valueOf(this.serializerComboBox.getSelectedItem()), this.schemaEditor.getDocument().getText().replaceAll("\\n", ""), this.keyField.getText(), this.payloadEditor.getDocument().getText().replaceAll("\\n", ""));

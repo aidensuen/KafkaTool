@@ -17,7 +17,9 @@
     </description>
     <idea-version since-build="191"/>
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent"/>
-        <toolWindow id="Kafka Tool" icon="/icons/kafka-icon_13x13.png" anchor="right" secondary="false" factoryClass="com.github.aidensuen.kafkatool.KafkaToolWindow"/>
+        <applicationService
+                serviceImplementation="com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent"/>
+        <toolWindow id="Kafka Tool" icon="/icons/kafka-icon_13x13.png" anchor="right" secondary="false"
+                    factoryClass="com.github.aidensuen.kafkatool.KafkaToolWindow"/>
     </extensions>
 </idea-plugin>

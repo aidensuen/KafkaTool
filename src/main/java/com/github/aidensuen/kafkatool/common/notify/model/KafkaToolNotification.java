@@ -9,7 +9,10 @@ public abstract class KafkaToolNotification extends Notification {
     private static final String NOTIFICATION_TITLE = "Kafka Tool";
 
     protected KafkaToolNotification(@NotNull String content, @NotNull NotificationType type) {
+        super(NOTIFICATION_GROUP_DISPLAY_ID, NOTIFICATION_TITLE, content, type);
+    }
 
-        super("Kafka Tool Notification", "Kafka Tool", content, type);
+    protected KafkaToolNotification(@NotNull String content, @NotNull String title, @NotNull NotificationType type) {
+        super(NOTIFICATION_GROUP_DISPLAY_ID, title, content, type);
     }
 }
