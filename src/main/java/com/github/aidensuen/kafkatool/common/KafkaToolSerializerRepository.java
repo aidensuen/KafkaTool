@@ -1,6 +1,7 @@
 package com.github.aidensuen.kafkatool.common;
 
 import com.google.common.collect.ImmutableMap;
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import java.util.Set;
 @Component
 public class KafkaToolSerializerRepository {
 
-    private static final Map<String, Class<? extends Serializer>> SERIALIZER_MAP = ImmutableMap.of("StringSerializer", StringSerializer.class);
+    private static final Map<String, Class<? extends Serializer>> SERIALIZER_MAP = ImmutableMap.of("KafkaAvroSerializer", KafkaAvroSerializer.class, "StringSerializer", StringSerializer.class);
 
     public KafkaToolSerializerRepository() {
     }
