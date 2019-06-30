@@ -94,7 +94,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
             List<String> result = Optional.ofNullable(project).map((nonNullProject) -> {
                 Set<Class> classesInPackage = avroClassScanner.loadAvroClassesFromProject(project, kafkaToolPersistentStateComponent.getAvroPackagePrefix());
                 if (classesInPackage.isEmpty()) {
-                    notificationService.info("No classes found. Make sure you have Avro classes that extends" + SpecificRecordBase.class.getName() + "on your classpath and that you've properly configured the 'Avro Package Prefix' property under the 'Settings' tab.");
+                    notificationService.info("No classes found. Make sure you have Avro classes that extends " + SpecificRecordBase.class.getName() + "on your classpath and that you've properly configured the 'Avro Package Prefix' property under the 'Settings' tab.");
                 }
                 this.avroClassMap.clear();
                 return classesInPackage.stream().peek((aClass) -> {
