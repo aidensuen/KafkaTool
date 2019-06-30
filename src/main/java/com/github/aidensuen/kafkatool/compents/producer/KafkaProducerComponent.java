@@ -237,10 +237,12 @@ public class KafkaProducerComponent implements KafkaToolComponent, DumbAware {
         //avroClassComboBox listener
         this.avroClassComboBox.addItemListener((e) -> {
             if (e.getStateChange() == 1) {
-                String selectedAvroClass = String.valueOf(this.avroClassComboBox.getSelectedItem());
-                String avroSchema = this.kafkaProducerService.getAvroSchema(selectedAvroClass);
-                PsiFile newPsi = PsiFileFactory.getInstance(project).createFileFromText(JsonLanguage.INSTANCE, avroSchema);
-                this.schemaEditor.getDocument().setText(newPsi.getViewProvider().getDocument().getText());
+                SwingUtilities.invokeLater(()->{
+                    String selectedAvroClass = String.valueOf(this.avroClassComboBox.getSelectedItem());
+                    String avroSchema = this.kafkaProducerService.getAvroSchema(selectedAvroClass);
+                    PsiFile newPsi = PsiFileFactory.getInstance(project).createFileFromText(JsonLanguage.INSTANCE, avroSchema);
+                    this.schemaEditor.getDocument().setText(newPsi.getViewProvider().getDocument().getText());
+                });
             }
 
         });
