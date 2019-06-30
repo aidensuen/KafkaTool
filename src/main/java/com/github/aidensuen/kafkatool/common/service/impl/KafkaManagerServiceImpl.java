@@ -34,8 +34,8 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
     private static final ConcurrentHashMap<String, Class> DESERIALIZER_CLASS_MAP = new ConcurrentHashMap();
 
     static {
-        DESERIALIZER_CLASS_MAP.put("KafkaAvroDeserializer", KafkaAvroDeserializer.class);
         DESERIALIZER_CLASS_MAP.put("StringDeserializer", StringDeserializer.class);
+        DESERIALIZER_CLASS_MAP.put("KafkaAvroDeserializer", KafkaAvroDeserializer.class);
     }
 
     @Autowired
@@ -110,6 +110,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
             } catch (Exception e) {
                 Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
             } finally {
+
                 function.callBack(Optional.of(consumerRecords));
             }
         });
@@ -146,7 +147,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
     private ConsumerFactory<String, Object> consumerFactory(String deserializer) {
         Map<String, Object> props = new HashMap();
         props.put("bootstrap.servers", this.kafkaToolPersistentStateComponent.getBootstrapServers());
-        props.put("group.id", "kafkasoft-consumer-group-id");
+        props.put("group.id", "kafkatool-consumer-group-id");
         props.put("key.deserializer", StringDeserializer.class);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         props.put("value.deserializer", DESERIALIZER_CLASS_MAP.get(deserializer));

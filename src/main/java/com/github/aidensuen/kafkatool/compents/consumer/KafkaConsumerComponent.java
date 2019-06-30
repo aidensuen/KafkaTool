@@ -30,6 +30,8 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -49,10 +51,9 @@ public class KafkaConsumerComponent implements KafkaToolComponent, DumbAware {
     private JPanel consumerPanel;
     private JToolBar viewerToolbar;
     private JButton refreshButton;
-    private JPanel consumerRecordViewer;
+    private JSplitPane consumerRecordViewer;
     private JList<String> consumerRecordList;
     private DefaultListModel<String> consumerRecordListModel;
-    private JTabbedPane consumerChildTabs;
     private JScrollPane consumerRecordListScrollPane;
     private JButton clearButton;
     private JCheckBox clearOnPollCheckbox;
@@ -88,18 +89,20 @@ public class KafkaConsumerComponent implements KafkaToolComponent, DumbAware {
 
         consumerRecordList = new JBList();
 
-        consumerRecordViewer = new JPanel();
-        consumerRecordViewer.setLayout(new GridLayout(1, 2));
-
+        consumerRecordViewer = new JSplitPane();
+        consumerRecordViewer.setDividerSize(5);
 
         consumerRecordListScrollPane = new JBScrollPane(consumerRecordList);
 
-        consumerRecordViewer.add(consumerRecordListScrollPane);
+        consumerRecordViewer.add(consumerRecordListScrollPane, JSplitPane.LEFT);
 
         consumerPanel.add(consumerRecordViewer, BorderLayout.CENTER);
 
-        consumerChildTabs = new JBTabbedPane();
-        consumerChildTabs.addTab("Viewer", consumerPanel);
+        consumerPanel.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+                consumerRecordViewer.setDividerLocation(0.4);
+            }
+        });
 
     }
 
@@ -126,7 +129,7 @@ public class KafkaConsumerComponent implements KafkaToolComponent, DumbAware {
         settings.setFoldingOutlineShown(true);
         settings.setTabSize(4);
         settings.setAutoCodeFoldingEnabled(true);
-        this.consumerRecordViewer.add(this.responseViewer.getComponent());
+        this.consumerRecordViewer.add(this.responseViewer.getComponent(), JSplitPane.RIGHT);
         this.refreshButton.setCursor(new Cursor(12));
         this.refreshButton.addActionListener((e) -> {
             ApplicationManager.getApplication().invokeLater(() -> {
@@ -156,7 +159,9 @@ public class KafkaConsumerComponent implements KafkaToolComponent, DumbAware {
                 JList list = (JList) mouseEvent.getSource();
                 String selectedValue = String.valueOf(list.getSelectedValue());
                 ConsumerRecord<String, Object> selectedRecord = KafkaConsumerComponent.this.consumerResults.get(selectedValue);
-                consumerResultsDocument.setText(KafkaConsumerComponent.this.formatText(selectedRecord));
+                if (selectedRecord != null) {
+                    consumerResultsDocument.setText(KafkaConsumerComponent.this.formatText(selectedRecord));
+                }
             }
         });
 
@@ -184,5 +189,4 @@ public class KafkaConsumerComponent implements KafkaToolComponent, DumbAware {
 
         return String.format("Topic: %s\nPartition: %s\nOffset: %s\nTimestamp: %s\nHeaders: %s\nKey: %s\nBody: %s\n", consumerRecord.topic(), consumerRecord.partition(), consumerRecord.offset(), consumerRecord.timestamp(), Arrays.toString(consumerRecord.headers().toArray()), consumerRecord.key(), prettyValue);
     }
-
 }
