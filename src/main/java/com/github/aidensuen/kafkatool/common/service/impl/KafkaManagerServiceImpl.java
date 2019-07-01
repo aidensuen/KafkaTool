@@ -168,7 +168,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         String url = String.format("%s/subjects/%s/versions/%s", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject, version);
         this.executorService.submit(() -> {
             try {
-                function.callBack(this.restTemplate.getForObject(url,String.class, new Object[0]));
+                function.callBack(this.restTemplate.getForObject(url, String.class, new Object[0]));
             } catch (Exception e) {
                 Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
                 function.callBack("");

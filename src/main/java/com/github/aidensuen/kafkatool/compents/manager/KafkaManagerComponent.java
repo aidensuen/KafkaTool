@@ -151,7 +151,7 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
         deleteSchemaButton = new JButton("Delete Schema");
 
         JPanel jPanel1 = new JPanel();
-        jPanel1.setLayout(new GridLayout(1,5));
+        jPanel1.setLayout(new GridLayout(1, 5));
         jPanel1.add(deleteSchemaButton);
 
         JPanel parent1 = new JPanel();
@@ -248,8 +248,8 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
         });
         this.deleteSchemaButton.addActionListener((actionEvent) -> {
             if (!Strings.isNullOrEmpty(this.selectedVersion)) {
-                this.kafkaManagerService.deleteSchema(this.selectedSubject, this.selectedVersion, (result)->{
-                    if (result){
+                this.kafkaManagerService.deleteSchema(this.selectedSubject, this.selectedVersion, (result) -> {
+                    if (result) {
                         this.refreshSchemas(actionEvent);
                         this.schemaTextArea.setText("");
                     }
