@@ -190,10 +190,8 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         });
     }
 
-    private Consumer<String, Object> getConsumer(String deserializer, String topic){
-        synchronized (KafkaManagerServiceImpl.class){
-            return CONSUMER_MAP.computeIfAbsent(deserializer + topic, v -> this.consumerFactory(deserializer).createConsumer());
-        }
+    private synchronized Consumer<String, Object> getConsumer(String deserializer, String topic){
+        return CONSUMER_MAP.computeIfAbsent(deserializer + topic, v -> this.consumerFactory(deserializer).createConsumer());
     }
 
     private ConsumerFactory<String, Object> consumerFactory(String deserializer) {

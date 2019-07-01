@@ -43,13 +43,13 @@ public class AvroJsonGenerator {
             jsonNode = this.jsonNodeFactory.textNode("");
         } else if (schema.getType() != Type.BYTES && schema.getType() != Type.FIXED) {
             if (schema.getType() == Type.INT) {
-                jsonNode = this.jsonNodeFactory.numberNode(-1);
+                jsonNode = this.jsonNodeFactory.numberNode(new Random().nextInt());
             } else if (schema.getType() == Type.LONG) {
                 jsonNode = this.jsonNodeFactory.numberNode(Instant.now().toEpochMilli());
             } else if (schema.getType() == Type.FLOAT) {
-                jsonNode = this.jsonNodeFactory.numberNode(-1.0F);
+                jsonNode = this.jsonNodeFactory.numberNode(new Random().nextFloat());
             } else if (schema.getType() == Type.DOUBLE) {
-                jsonNode = this.jsonNodeFactory.numberNode(-1.0D);
+                jsonNode = this.jsonNodeFactory.numberNode(new Random().nextDouble());
             } else if (schema.getType() == Type.BOOLEAN) {
                 jsonNode = this.jsonNodeFactory.booleanNode(false);
             } else {
