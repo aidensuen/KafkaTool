@@ -36,6 +36,8 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
 
     private static final ConcurrentHashMap<String, Class> DESERIALIZER_CLASS_MAP = new ConcurrentHashMap();
 
+    private static final Map<String, Consumer> CONSUMER_MAP = new ConcurrentHashMap<>();
+
     static {
         DESERIALIZER_CLASS_MAP.put("StringDeserializer", StringDeserializer.class);
         DESERIALIZER_CLASS_MAP.put("KafkaAvroDeserializer", KafkaAvroDeserializer.class);
@@ -100,12 +102,15 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         executorService.submit(() -> {
             List<ConsumerRecord<String, Object>> consumerRecords = new ArrayList();
             try {
-                Consumer<String, Object> kafkaConsumer = this.consumerFactory(deserializer).createConsumer();
+                Consumer<String, Object> kafkaConsumer = getConsumer(deserializer, topic);
                 kafkaConsumer.subscribe(Collections.singletonList(topic));
                 for (int i = 0; i < readAttempts && consumerRecords.size() < numberOfRecords; i++) {
                     try {
-                        ConsumerRecords<String, Object> records = kafkaConsumer.poll(Duration.ofSeconds(1000L));
+                        ConsumerRecords<String, Object> records = kafkaConsumer.poll(Duration.ofSeconds(1L));
                         consumerRecords.addAll(StreamSupport.stream(records.records(topic).spliterator(), false).collect(Collectors.toList()));
+                        if (!records.isEmpty()) {
+                            kafkaConsumer.commitAsync();
+                        }
                     } catch (Exception e) {
                         LOGGER.error(e.getMessage());
                     }
@@ -185,12 +190,17 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         });
     }
 
+    private Consumer<String, Object> getConsumer(String deserializer, String topic){
+        synchronized (KafkaManagerServiceImpl.class){
+            return CONSUMER_MAP.computeIfAbsent(deserializer + topic, v -> this.consumerFactory(deserializer).createConsumer());
+        }
+    }
+
     private ConsumerFactory<String, Object> consumerFactory(String deserializer) {
         Map<String, Object> props = new HashMap();
         props.put("bootstrap.servers", this.kafkaToolPersistentStateComponent.getBootstrapServers());
         props.put("group.id", "kafkatool-consumer-group-id");
         props.put("key.deserializer", StringDeserializer.class);
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         props.put("value.deserializer", DESERIALIZER_CLASS_MAP.get(deserializer));
         props.put("schema.registry.url", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl());
         props.put("exclude.internal.topics", true);
