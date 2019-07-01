@@ -138,7 +138,6 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
                                 }
                             });
                         });
-
                     });
                     return Subject.newBuilder().setSchemaList(schemaVersionList).setSubjectName(subjectName).build();
                 }).collect(Collectors.toList());
@@ -153,28 +152,23 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
     @Override
     public void listSubjectVersions(String subject, Function<List<Integer>> function) {
         String url = String.format("%s/subjects/%s/versions/", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject);
-        this.executorService.submit(() -> {
-            try {
-                function.callBack(this.restTemplate.getForObject(url, List.class, new Object[0]));
-            } catch (Exception e) {
-                Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
-                function.callBack(new ArrayList<>());
-            }
-        });
+        try {
+            function.callBack(this.restTemplate.getForObject(url, List.class, new Object[0]));
+        } catch (Exception e) {
+            Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
+            function.callBack(new ArrayList<>());
+        }
     }
 
     @Override
     public void getSchema(String subject, String version, Function<String> function) {
         String url = String.format("%s/subjects/%s/versions/%s", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject, version);
-        this.executorService.submit(() -> {
-            try {
-                function.callBack(this.restTemplate.getForObject(url, String.class, new Object[0]));
-            } catch (Exception e) {
-                Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
-                function.callBack("");
-            }
-
-        });
+        try {
+            function.callBack(this.restTemplate.getForObject(url, String.class, new Object[0]));
+        } catch (Exception e) {
+            Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
+            function.callBack("");
+        }
     }
 
     @Override
