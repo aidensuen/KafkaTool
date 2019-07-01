@@ -3,6 +3,7 @@ package com.github.aidensuen.kafkatool.compents.consumer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aidensuen.kafkatool.common.notify.NotificationService;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
+import com.github.aidensuen.kafkatool.common.ui.ButtonTabComponent;
 import com.github.aidensuen.kafkatool.compents.KafkaToolComponent;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 public class KafkaConsumerContainerComponent implements KafkaToolComponent, DumbAware {
@@ -29,6 +31,8 @@ public class KafkaConsumerContainerComponent implements KafkaToolComponent, Dumb
 
     @Autowired
     private NotificationService notificationService;
+
+    private AtomicInteger tabs = new AtomicInteger(-1);
 
     private JPanel mainPanel;
     private JButton createConsumerButton;
@@ -63,7 +67,7 @@ public class KafkaConsumerContainerComponent implements KafkaToolComponent, Dumb
 
         jPanel.add(jPanel1, BorderLayout.CENTER);
 
-        consumerTabbedPane = TabbedPaneFactory.createCloseButtonTabbedPane();
+        consumerTabbedPane = new JBTabbedPane();
         consumerTabbedPane.setTabPlacement(JBTabbedPane.TOP);
         consumerTabbedPane.setTabLayoutPolicy(JBTabbedPane.SCROLL_TAB_LAYOUT);
 
@@ -79,6 +83,7 @@ public class KafkaConsumerContainerComponent implements KafkaToolComponent, Dumb
             String topic = this.topicTextField.getText();
             if (!topic.isEmpty()) {
                 this.consumerTabbedPane.addTab(topic, (new KafkaConsumerComponent(kafkaManagerService, objectMapper, deserializerComboBox.getSelectedItem().toString(), topic)).getContent(project).getComponent());
+                this.consumerTabbedPane.setTabComponentAt(tabs.incrementAndGet(), new ButtonTabComponent(this.consumerTabbedPane, tabs));
             } else {
                 this.notificationService.error("Invalid Topic");
             }
