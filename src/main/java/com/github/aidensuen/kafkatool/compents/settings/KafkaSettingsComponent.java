@@ -8,17 +8,12 @@ import com.intellij.openapi.project.Project;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentFactory.SERVICE;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
@@ -26,8 +21,6 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
     private static final String SETTINGS_LABEL = "Settings";
     private KafkaToolPersistentStateComponent kafkaToolPersistentStateComponent;
     private NotificationService notificationService;
-
-    private static int height = 30;
 
     private JPanel mainPanel;
     private JTextField bootstrapServersSettingField;
