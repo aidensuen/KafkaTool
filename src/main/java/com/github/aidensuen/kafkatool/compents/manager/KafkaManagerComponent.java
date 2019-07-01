@@ -1,5 +1,6 @@
 package com.github.aidensuen.kafkatool.compents.manager;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
 import com.github.aidensuen.kafkatool.compents.KafkaToolComponent;
 import com.github.aidensuen.kafkatool.model.SchemaVersion;
@@ -25,8 +26,6 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

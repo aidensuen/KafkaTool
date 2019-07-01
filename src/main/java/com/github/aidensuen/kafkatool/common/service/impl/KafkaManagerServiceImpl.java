@@ -3,8 +3,10 @@ package com.github.aidensuen.kafkatool.common.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aidensuen.kafkatool.common.Function;
 import com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent;
+import com.github.aidensuen.kafkatool.common.exception.KafkaToolException;
 import com.github.aidensuen.kafkatool.common.notify.model.ErrorNotification;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
+import com.github.aidensuen.kafkatool.model.SchemaVersion;
 import com.github.aidensuen.kafkatool.model.Subject;
 import com.intellij.notification.Notifications;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
@@ -19,6 +21,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -121,11 +124,56 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         String listSubjectsUrl = String.format("%s/subjects", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl());
         this.executorService.submit(() -> {
             try {
-                function.callBack(this.restTemplate.getForObject(listSubjectsUrl, List.class, new Object[0]));
+                List<String> subjects = this.restTemplate.getForObject(listSubjectsUrl, List.class, new Object[0]);
+                List<Subject> subjectList = subjects.stream().map((subjectName) -> {
+                    List<SchemaVersion> schemaVersionList = new ArrayList();
+                    this.listSubjectVersions(subjectName, versons -> {
+                        versons.forEach((version) -> {
+                            String versionStr = String.valueOf(version);
+                            this.getSchema(subjectName, versionStr, schema -> {
+                                try {
+                                    schemaVersionList.add(this.objectMapper.readValue(schema, SchemaVersion.class));
+                                } catch (IOException e) {
+                                    throw new KafkaToolException("Failed to parse schema version", e);
+                                }
+                            });
+                        });
+
+                    });
+                    return Subject.newBuilder().setSchemaList(schemaVersionList).setSubjectName(subjectName).build();
+                }).collect(Collectors.toList());
+                function.callBack(subjectList);
             } catch (Exception e) {
                 Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
                 function.callBack(new ArrayList<>());
             }
+        });
+    }
+
+    @Override
+    public void listSubjectVersions(String subject, Function<List<Integer>> function) {
+        String url = String.format("%s/subjects/%s/versions/", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject);
+        this.executorService.submit(() -> {
+            try {
+                function.callBack(this.restTemplate.getForObject(url, List.class, new Object[0]));
+            } catch (Exception e) {
+                Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
+                function.callBack(new ArrayList<>());
+            }
+        });
+    }
+
+    @Override
+    public void getSchema(String subject, String version, Function<String> function) {
+        String url = String.format("%s/subjects/%s/versions/%s", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject, version);
+        this.executorService.submit(() -> {
+            try {
+                function.callBack(this.restTemplate.getForObject(url,String.class, new Object[0]));
+            } catch (Exception e) {
+                Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
+                function.callBack("");
+            }
+
         });
     }
 

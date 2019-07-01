@@ -19,5 +19,9 @@ public interface KafkaManagerService {
 
     void listSubjects(Function<List<Subject>> function);
 
+    void listSubjectVersions(String subject, Function<List<Integer>> function);
+
+    void getSchema(String subject, String version, Function<String> function);
+
     void deleteSchema(String subject, String version, Function<Boolean> function);
 }
