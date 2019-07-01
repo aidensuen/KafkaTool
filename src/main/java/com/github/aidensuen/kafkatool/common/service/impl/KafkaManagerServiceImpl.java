@@ -113,7 +113,6 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
             } catch (Exception e) {
                 Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
             } finally {
-
                 function.callBack(Optional.of(consumerRecords));
             }
         });
