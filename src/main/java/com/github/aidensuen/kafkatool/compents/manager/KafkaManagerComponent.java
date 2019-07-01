@@ -25,6 +25,8 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -150,9 +152,14 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
         deleteSchemaButton = new JButton("Delete Schema");
 
         JPanel jPanel1 = new JPanel();
-        jPanel.setLayout(new GridLayout(1,5));
+        jPanel1.setLayout(new GridLayout(1,5));
         jPanel1.add(deleteSchemaButton);
-        rigthPanel.add(jPanel1, BorderLayout.NORTH);
+
+        JPanel parent1 = new JPanel();
+        parent1.setLayout(new BorderLayout());
+        parent1.add(jPanel1, BorderLayout.WEST);
+
+        rigthPanel.add(parent1, BorderLayout.NORTH);
 
         JTabbedPane jTabbedPane = new JBTabbedPane();
 
@@ -161,8 +168,8 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
 
         rigthPanel.add(jTabbedPane, BorderLayout.CENTER);
 
-        jSplitPane.add(rigthPanel, JSplitPane.LEFT);
-        jSplitPane.add(jTabbedPane, JSplitPane.RIGHT);
+        jSplitPane.add(jScrollPane, JSplitPane.LEFT);
+        jSplitPane.add(rigthPanel, JSplitPane.RIGHT);
 
         mainPanel.add(jSplitPane, BorderLayout.CENTER);
 

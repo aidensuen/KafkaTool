@@ -28,7 +28,6 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
     private NotificationService notificationService;
 
     private static int height = 30;
-    private static int width = 460;
 
     private JPanel mainPanel;
     private JTextField bootstrapServersSettingField;
@@ -79,8 +78,7 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
         buttonJpanel.add(this.restoreDefaultsButton);
         controlPanel.add(buttonJpanel);
 
-        this.mainPanel.setSize(width, height * 7);
-        this.mainPanel.setLayout(new GridLayout(3, 1));
+        this.mainPanel.setLayout(new GridLayout(2, 1));
         this.mainPanel.add(controlPanel);
     }
 
