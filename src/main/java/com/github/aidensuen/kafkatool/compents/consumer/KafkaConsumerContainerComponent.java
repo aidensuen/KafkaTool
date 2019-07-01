@@ -12,7 +12,6 @@ import com.intellij.ui.components.JBTabbedPane;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import org.jetbrains.annotations.NotNull;
-import org.openide.awt.TabbedPaneFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -88,12 +87,6 @@ public class KafkaConsumerContainerComponent implements KafkaToolComponent, Dumb
                 this.notificationService.error("Invalid Topic");
             }
 
-        });
-
-        this.consumerTabbedPane.addPropertyChangeListener(TabbedPaneFactory.PROP_CLOSE, (evt) -> {
-            JTabbedPane tabbedPane = (JTabbedPane)evt.getSource();
-            int sel = tabbedPane.getSelectedIndex();
-            this.consumerTabbedPane.remove(sel);
         });
 
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
