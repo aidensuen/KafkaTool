@@ -1,6 +1,5 @@
 package com.github.aidensuen.kafkatool.compents.manager;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
 import com.github.aidensuen.kafkatool.compents.KafkaToolComponent;
 import com.github.aidensuen.kafkatool.model.SchemaVersion;
