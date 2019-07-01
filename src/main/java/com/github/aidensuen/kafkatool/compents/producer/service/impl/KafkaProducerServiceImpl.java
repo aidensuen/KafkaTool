@@ -105,6 +105,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
                 return Collections.emptyList();
             });
             function.callBack(result);
+
         });
     }
 

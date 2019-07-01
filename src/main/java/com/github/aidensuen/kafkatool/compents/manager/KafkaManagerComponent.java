@@ -3,6 +3,7 @@ package com.github.aidensuen.kafkatool.compents.manager;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
 import com.github.aidensuen.kafkatool.compents.KafkaToolComponent;
 import com.github.aidensuen.kafkatool.model.SchemaVersion;
+import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
@@ -71,7 +72,7 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
         schemaPanel.setLayout(new BorderLayout());
         initSchema(schemaPanel);
         tabbedPane.addTab("Topics", topicsPanel);
-        tabbedPane.addTab("Schemas", schemaPanel);
+        tabbedPane.addTab("Schema Registry", schemaPanel);
 
     }
 
@@ -143,10 +144,25 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
         schemaTextArea.setLineWrap(true);
         schemaTextArea.setWrapStyleWord(true);
 
-        JScrollPane scrollPane = new JBScrollPane(schemaTextArea);
+        JPanel rigthPanel = new JPanel();
+        rigthPanel.setLayout(new BorderLayout());
 
-        jSplitPane.add(jScrollPane, JSplitPane.LEFT);
-        jSplitPane.add(scrollPane, JSplitPane.RIGHT);
+        deleteSchemaButton = new JButton("Delete Schema");
+
+        JPanel jPanel1 = new JPanel();
+        jPanel.setLayout(new GridLayout(1,5));
+        jPanel1.add(deleteSchemaButton);
+        rigthPanel.add(jPanel1, BorderLayout.NORTH);
+
+        JTabbedPane jTabbedPane = new JBTabbedPane();
+
+        JScrollPane scrollPane = new JBScrollPane(schemaTextArea);
+        jTabbedPane.addTab("View", scrollPane);
+
+        rigthPanel.add(jTabbedPane, BorderLayout.CENTER);
+
+        jSplitPane.add(rigthPanel, JSplitPane.LEFT);
+        jSplitPane.add(jTabbedPane, JSplitPane.RIGHT);
 
         mainPanel.add(jSplitPane, BorderLayout.CENTER);
 
@@ -224,14 +240,17 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
             }
 
         });
-//        this.deleteSchemaButton.addActionListener((actionEvent) -> {
-//            if (!Strings.isNullOrEmpty(this.selectedVersion)) {
-//                this.kafkaManagerService.deleteSchema(this.selectedSubject, this.selectedVersion);
-//                this.refreshSchemas(actionEvent);
-//                this.schemaTextArea.setText("");
-//            }
-//
-//        });
+        this.deleteSchemaButton.addActionListener((actionEvent) -> {
+            if (!Strings.isNullOrEmpty(this.selectedVersion)) {
+                this.kafkaManagerService.deleteSchema(this.selectedSubject, this.selectedVersion, (result)->{
+                    if (result){
+                        this.refreshSchemas(actionEvent);
+                        this.schemaTextArea.setText("");
+                    }
+                });
+            }
+
+        });
 
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         return contentFactory.createContent(this.tabbedPane, "Manager", false);

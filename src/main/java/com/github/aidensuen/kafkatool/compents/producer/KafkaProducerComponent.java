@@ -29,6 +29,8 @@ import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.Set;
 
 @Component
@@ -77,6 +79,7 @@ public class KafkaProducerComponent implements KafkaToolComponent, DumbAware {
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitPane.setDividerLocation(0.5);
         splitPane.setDividerSize(5);
 
         splitPane.add(first);
@@ -91,6 +94,12 @@ public class KafkaProducerComponent implements KafkaToolComponent, DumbAware {
         mainPanel.add(splitPane, BorderLayout.CENTER);
 
         mainPanel.add(four, BorderLayout.SOUTH);
+
+        mainPanel.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+                splitPane.setDividerLocation(0.5);
+            }
+        });
 
         tabbedPane.addTab("producer", mainPanel);
     }
