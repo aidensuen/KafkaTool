@@ -159,7 +159,7 @@ public class KafkaConsumerComponent implements KafkaToolComponent, DumbAware {
                 String selectedValue = String.valueOf(list.getSelectedValue());
                 ConsumerRecord<String, Object> selectedRecord = KafkaConsumerComponent.this.consumerResults.get(selectedValue);
                 if (selectedRecord != null) {
-                    consumerResultsDocument.setText(KafkaConsumerComponent.this.formatText(selectedRecord));
+                    consumerResultsDocument.setText(KafkaConsumerComponent.this.formatText(selectedRecord).replaceAll("\r", ""));
                 }
             }
         });
