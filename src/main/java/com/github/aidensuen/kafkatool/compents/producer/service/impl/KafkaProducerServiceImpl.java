@@ -183,7 +183,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
         executorService.submit(() -> {
             String result = "";
             try {
-                result = Optional.ofNullable(rawSchema).map((nonNullRawSchema) -> {
+                result = Optional.ofNullable(rawSchema.replaceAll("\r", "").replaceAll("\n","")).map((nonNullRawSchema) -> {
                     Schema schema = (new Schema.Parser()).parse(nonNullRawSchema);
                     JsonNode generate = this.avroJsonGenerator.generate(schema, (schema1) -> {
                         return 1 + (new Random(Instant.now().toEpochMilli())).nextInt(schema1.getTypes().size() - 1);
