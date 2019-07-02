@@ -95,7 +95,7 @@ public class KafkaProducerComponent implements KafkaToolComponent, DumbAware {
 
         mainPanel.add(four, BorderLayout.SOUTH);
 
-        mainPanel.addComponentListener(new ComponentAdapter() {
+        tabbedPane.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
                 splitPane.setDividerLocation(0.5);
             }
