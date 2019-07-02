@@ -71,7 +71,7 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
         buttonJpanel.add(this.restoreDefaultsButton);
         controlPanel.add(buttonJpanel);
 
-        this.mainPanel.setLayout(new GridLayout(2, 1));
+        this.mainPanel.setLayout(new GridLayout(3, 1));
         this.mainPanel.add(controlPanel);
     }
 
