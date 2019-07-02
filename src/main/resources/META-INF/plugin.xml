@@ -15,7 +15,7 @@
         &lt;li&gt;Schema Registry Viewer&lt;/li&gt;
         &lt;/ul&gt;
     </description>
-    <idea-version since-build="191"/>
+    <idea-version since-build="171"/>
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
                 serviceImplementation="com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent"/>
