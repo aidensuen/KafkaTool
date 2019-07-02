@@ -288,7 +288,7 @@ public class KafkaProducerComponent implements KafkaToolComponent, DumbAware {
         this.randomGeneratePayloadButton.addActionListener((e) -> {
             this.kafkaProducerService.generateRandomPayloadFromSchema(this.schemaEditor.getDocument().getText(), text -> {
                 SwingUtilities.invokeLater(() -> {
-                    this.payloadEditor.getDocument().setText(text);
+                    this.payloadEditor.getDocument().setText(text.replaceAll("\r", ""));
                 });
             });
         });
