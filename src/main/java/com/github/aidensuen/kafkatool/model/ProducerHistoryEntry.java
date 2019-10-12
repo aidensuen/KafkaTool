@@ -108,7 +108,7 @@ public class ProducerHistoryEntry {
     }
 
     public int hashCode() {
-        return Objects.hash(new Object[]{this.id, this.topic, this.serializer, this.schema, this.key, this.payload, this.timestamp});
+        return Objects.hash(this.id, this.topic, this.serializer, this.schema, this.key, this.payload, this.timestamp);
     }
 
     public static final class ProducerHistoryEntryBuilder {

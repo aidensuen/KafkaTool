@@ -110,7 +110,7 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
 
 
         EditorHighlighterFactory editorHighlighterFactory = EditorHighlighterFactory.getInstance();
-        SyntaxHighlighter syntaxHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(JsonFileType.INSTANCE, project, (VirtualFile) null);
+        SyntaxHighlighter syntaxHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(JsonFileType.INSTANCE, project, null);
         EditorColorsScheme globalScheme = EditorColorsManager.getInstance().getGlobalScheme();
         EditorFactory factory = EditorFactory.getInstance();
         Document schemaDocument = ((EditorFactoryImpl) factory).createDocument("", false, true);

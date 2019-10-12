@@ -99,7 +99,7 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
         this.consumerProperties.putAll(consumerProperties);
     }
 
-    public void refresh(){
+    public void refresh() {
         this.producerProperties.clear();
         this.consumerProperties.clear();
     }

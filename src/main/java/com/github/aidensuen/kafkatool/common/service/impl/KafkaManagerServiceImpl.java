@@ -134,7 +134,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         String listSubjectsUrl = String.format("%s/subjects", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl());
         this.executorService.submit(() -> {
             try {
-                List<String> subjects = this.restTemplate.getForObject(listSubjectsUrl, List.class, new Object[0]);
+                List<String> subjects = this.restTemplate.getForObject(listSubjectsUrl, List.class);
                 List<Subject> subjectList = subjects.stream().map((subjectName) -> {
                     List<SchemaVersion> schemaVersionList = new ArrayList();
                     this.listSubjectVersions(subjectName, versons -> {
@@ -163,7 +163,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
     public void listSubjectVersions(String subject, Function<List<Integer>> function) {
         String url = String.format("%s/subjects/%s/versions", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject);
         try {
-            function.callBack(this.restTemplate.getForObject(url, List.class, new Object[0]));
+            function.callBack(this.restTemplate.getForObject(url, List.class));
         } catch (Exception e) {
             Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
             function.callBack(new ArrayList<>());
@@ -174,7 +174,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
     public void getSchema(String subject, String version, Function<String> function) {
         String url = String.format("%s/subjects/%s/versions/%s", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject, version);
         try {
-            function.callBack(this.restTemplate.getForObject(url, String.class, new Object[0]));
+            function.callBack(this.restTemplate.getForObject(url, String.class));
         } catch (Exception e) {
             Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
             function.callBack("");
@@ -186,7 +186,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         String url = String.format("%s/subjects/%s/versions/%s", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject, version);
         this.executorService.submit(() -> {
             try {
-                this.restTemplate.delete(url, new Object[0]);
+                this.restTemplate.delete(url);
                 function.callBack(true);
             } catch (Exception e) {
                 Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));

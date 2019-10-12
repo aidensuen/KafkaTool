@@ -37,7 +37,7 @@ public class AvroClassScannerImpl implements AvroClassScanner {
 
         Module[] modules = ModuleManager.getInstance(project).getModules();
 
-        List<? extends Class> avroClassListResult = (List) Arrays.stream(modules).filter((module) -> {
+        List<? extends Class> avroClassListResult = Arrays.stream(modules).filter((module) -> {
             return module.getName().contains(MAIN_SUFFIX);
         }).map((module) -> {
             return this.getAvroClassesFromModule(module, packageName);

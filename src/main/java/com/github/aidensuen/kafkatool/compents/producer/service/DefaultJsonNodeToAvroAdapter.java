@@ -80,8 +80,8 @@ public class DefaultJsonNodeToAvroAdapter implements BiFunction<JsonNode, Schema
 
         for (int i = 0; i < possibleSchemas.size() && !schemaFound; ++i) {
             try {
-                unionObject = this.apply(jsonNode, (Schema) possibleSchemas.get(i));
-                resolvedSchema = (Schema) possibleSchemas.get(i);
+                unionObject = this.apply(jsonNode, possibleSchemas.get(i));
+                resolvedSchema = possibleSchemas.get(i);
                 schemaFound = true;
             } catch (KafkaToolException var10) {
             }
@@ -98,7 +98,7 @@ public class DefaultJsonNodeToAvroAdapter implements BiFunction<JsonNode, Schema
         Schema mapValueSchema = schema.getValueType();
         Map<String, Object> map = new HashMap();
         jsonNode.fields().forEachRemaining((field) -> {
-            map.put(field.getKey(), this.apply((JsonNode) field.getValue(), mapValueSchema));
+            map.put(field.getKey(), this.apply(field.getValue(), mapValueSchema));
         });
         return map;
     }

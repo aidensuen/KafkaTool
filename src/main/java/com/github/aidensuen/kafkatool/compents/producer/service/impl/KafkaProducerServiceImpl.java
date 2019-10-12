@@ -102,7 +102,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
 
     @Override
     public String getAvroSchema(String className) {
-        Class aClass = (Class) Objects.requireNonNull(this.avroClassMap.get(className));
+        Class aClass = Objects.requireNonNull(this.avroClassMap.get(className));
         String schema = "";
 
         try {

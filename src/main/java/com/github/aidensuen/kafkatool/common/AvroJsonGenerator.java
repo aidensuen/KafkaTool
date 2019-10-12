@@ -30,14 +30,14 @@ public class AvroJsonGenerator {
         if (schema.getType() == Type.RECORD) {
             jsonNode = this.resolveRecord(schema, unionSelector);
         } else if (schema.getType() == Type.ENUM) {
-            jsonNode = this.jsonNodeFactory.textNode((String) schema.getEnumSymbols().get((new Random(Instant.now().toEpochMilli())).nextInt(schema.getEnumSymbols().size() - 1)));
+            jsonNode = this.jsonNodeFactory.textNode(schema.getEnumSymbols().get((new Random(Instant.now().toEpochMilli())).nextInt(schema.getEnumSymbols().size() - 1)));
         } else if (schema.getType() == Type.ARRAY) {
             jsonNode = this.jsonNodeFactory.arrayNode();
             ((ArrayNode) jsonNode).add(this.generate(schema.getElementType(), unionSelector));
         } else if (schema.getType() == Type.MAP) {
             jsonNode = this.jsonNodeFactory.objectNode();
         } else if (schema.getType() == Type.UNION) {
-            jsonNode = this.generate((Schema) schema.getTypes().get((Integer) unionSelector.apply(schema)), unionSelector);
+            jsonNode = this.generate(schema.getTypes().get(unionSelector.apply(schema)), unionSelector);
         } else if (schema.getType() == Type.STRING) {
             jsonNode = this.jsonNodeFactory.textNode("");
         } else if (schema.getType() != Type.BYTES && schema.getType() != Type.FIXED) {
