@@ -17,16 +17,16 @@ public class FixedStack<T> extends Stack<T> {
         this.maxSize = maxSize;
     }
 
+    public static <T> FixedStack<T> newFixedStack() {
+        return new FixedStack();
+    }
+
     public T push(T object) {
         while (this.size() >= this.maxSize) {
             this.remove(0);
         }
 
         return super.push(object);
-    }
-
-    public static <T> FixedStack<T> newFixedStack() {
-        return new FixedStack();
     }
 
     @Override

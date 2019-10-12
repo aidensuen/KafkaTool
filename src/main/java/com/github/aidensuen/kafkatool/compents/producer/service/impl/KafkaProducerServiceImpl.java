@@ -13,8 +13,8 @@ import com.github.aidensuen.kafkatool.common.notify.NotificationService;
 import com.github.aidensuen.kafkatool.common.notify.model.ErrorNotification;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
 import com.github.aidensuen.kafkatool.compents.producer.KafkaProducerComponent;
-import com.github.aidensuen.kafkatool.compents.producer.service.KafkaProducerProvider;
 import com.github.aidensuen.kafkatool.compents.producer.service.AvroClassScanner;
+import com.github.aidensuen.kafkatool.compents.producer.service.KafkaProducerProvider;
 import com.github.aidensuen.kafkatool.compents.producer.service.KafkaProducerService;
 import com.github.aidensuen.kafkatool.model.ProducerHistoryEntry;
 import com.intellij.notification.Notifications;
@@ -43,30 +43,21 @@ import java.util.stream.Collectors;
 public class KafkaProducerServiceImpl implements KafkaProducerService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaProducerComponent.class);
-
-    private Map<String, Class> avroClassMap = new ConcurrentHashMap<>();
-
-    @Autowired
-    ObjectMapper objectMapper;
-
-    @Autowired
-    private ExecutorService executorService;
-
-    @Autowired
-    private KafkaManagerService kafkaManagerService;
-
-    @Autowired
-    private NotificationService notificationService;
-
-    @Autowired
-    private AvroClassScanner avroClassScanner;
-
     @Autowired
     public KafkaProducerProvider kafkaProducerProvider;
-
+    @Autowired
+    ObjectMapper objectMapper;
     @Autowired
     KafkaToolPersistentStateComponent kafkaToolPersistentStateComponent;
-
+    private Map<String, Class> avroClassMap = new ConcurrentHashMap<>();
+    @Autowired
+    private ExecutorService executorService;
+    @Autowired
+    private KafkaManagerService kafkaManagerService;
+    @Autowired
+    private NotificationService notificationService;
+    @Autowired
+    private AvroClassScanner avroClassScanner;
     @Autowired
     private KafkaToolSerializerRepository kafkaToolSerializerRepository;
 

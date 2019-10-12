@@ -23,6 +23,10 @@ public class ProducerHistoryEntry {
         this.timestamp = Instant.now().toString();
     }
 
+    public static ProducerHistoryEntry.ProducerHistoryEntryBuilder newBuilder() {
+        return new ProducerHistoryEntry.ProducerHistoryEntryBuilder();
+    }
+
     public String getId() {
         return this.id;
     }
@@ -105,10 +109,6 @@ public class ProducerHistoryEntry {
 
     public int hashCode() {
         return Objects.hash(new Object[]{this.id, this.topic, this.serializer, this.schema, this.key, this.payload, this.timestamp});
-    }
-
-    public static ProducerHistoryEntry.ProducerHistoryEntryBuilder newBuilder() {
-        return new ProducerHistoryEntry.ProducerHistoryEntryBuilder();
     }
 
     public static final class ProducerHistoryEntryBuilder {

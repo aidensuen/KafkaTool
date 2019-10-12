@@ -3,14 +3,14 @@ package com.github.aidensuen.kafkatool.compents.producer.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.aidensuen.kafkatool.common.exception.KafkaToolException;
 import com.google.common.collect.Lists;
-import org.apache.avro.generic.GenericData;
-import org.apache.avro.generic.GenericRecord;
-import org.springframework.stereotype.Service;
 import org.apache.avro.Schema;
 import org.apache.avro.Schema.Field;
 import org.apache.avro.Schema.Type;
+import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericData.Fixed;
 import org.apache.avro.generic.GenericData.Record;
+import org.apache.avro.generic.GenericRecord;
+import org.springframework.stereotype.Service;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -23,6 +23,14 @@ import java.util.function.BiFunction;
 @Service
 public class DefaultJsonNodeToAvroAdapter implements BiFunction<JsonNode, Schema, Object> {
     public DefaultJsonNodeToAvroAdapter() {
+    }
+
+    private static boolean isBooleanNode(JsonNode jsonNode) {
+        return jsonNode.isBoolean() || jsonNode.isTextual() && (jsonNode.textValue().equalsIgnoreCase("true") || jsonNode.textValue().equalsIgnoreCase("false"));
+    }
+
+    private static Object resolveEnum(Schema schema, JsonNode jsonNode) {
+        return (new GenericData()).createEnum(jsonNode.textValue(), schema);
     }
 
     public Object apply(JsonNode jsonNode, Schema schema) {
@@ -62,14 +70,6 @@ public class DefaultJsonNodeToAvroAdapter implements BiFunction<JsonNode, Schema
         }
 
         return parsedObject;
-    }
-
-    private static boolean isBooleanNode(JsonNode jsonNode) {
-        return jsonNode.isBoolean() || jsonNode.isTextual() && (jsonNode.textValue().equalsIgnoreCase("true") || jsonNode.textValue().equalsIgnoreCase("false"));
-    }
-
-    private static Object resolveEnum(Schema schema, JsonNode jsonNode) {
-        return (new GenericData()).createEnum(jsonNode.textValue(), schema);
     }
 
     private Object resolveUnion(Schema schema, JsonNode jsonNode) {

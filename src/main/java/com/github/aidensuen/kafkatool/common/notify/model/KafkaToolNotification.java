@@ -1,7 +1,7 @@
 package com.github.aidensuen.kafkatool.common.notify.model;
 
-import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class KafkaToolNotification extends Notification {

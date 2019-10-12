@@ -3,8 +3,8 @@ package com.github.aidensuen.kafkatool.common.notify.impl;
 import com.github.aidensuen.kafkatool.common.notify.NotificationService;
 import com.github.aidensuen.kafkatool.common.notify.model.ErrorNotification;
 import com.github.aidensuen.kafkatool.common.notify.model.SuccessNotification;
-import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications.Bus;
 import org.springframework.stereotype.Service;
 

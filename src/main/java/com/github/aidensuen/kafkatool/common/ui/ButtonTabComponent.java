@@ -8,6 +8,23 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ButtonTabComponent extends JPanel {
 
+    private final static MouseListener buttonMouseListener = new MouseAdapter() {
+        public void mouseEntered(MouseEvent e) {
+            Component component = e.getComponent();
+            if (component instanceof AbstractButton) {
+                AbstractButton button = (AbstractButton) component;
+                button.setBorderPainted(true);
+            }
+        }
+
+        public void mouseExited(MouseEvent e) {
+            Component component = e.getComponent();
+            if (component instanceof AbstractButton) {
+                AbstractButton button = (AbstractButton) component;
+                button.setBorderPainted(false);
+            }
+        }
+    };
     private final JTabbedPane pane;
     private final AtomicInteger tabs;
 
@@ -95,22 +112,4 @@ public class ButtonTabComponent extends JPanel {
             g2.dispose();
         }
     }
-
-    private final static MouseListener buttonMouseListener = new MouseAdapter() {
-        public void mouseEntered(MouseEvent e) {
-            Component component = e.getComponent();
-            if (component instanceof AbstractButton) {
-                AbstractButton button = (AbstractButton) component;
-                button.setBorderPainted(true);
-            }
-        }
-
-        public void mouseExited(MouseEvent e) {
-            Component component = e.getComponent();
-            if (component instanceof AbstractButton) {
-                AbstractButton button = (AbstractButton) component;
-                button.setBorderPainted(false);
-            }
-        }
-    };
 }

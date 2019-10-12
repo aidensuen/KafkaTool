@@ -1,8 +1,8 @@
 package com.github.aidensuen.kafkatool.common.notify.model;
 
+import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.util.IconLoader;
-import com.intellij.notification.Notification;
 
 public class ErrorNotification extends KafkaToolNotification {
 

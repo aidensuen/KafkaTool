@@ -9,6 +9,10 @@ public class Subject {
     public Subject() {
     }
 
+    public static Subject.SubjectBuilder newBuilder() {
+        return new Subject.SubjectBuilder();
+    }
+
     public String getSubjectName() {
         return this.subjectName;
     }
@@ -23,10 +27,6 @@ public class Subject {
 
     public void setSchemaVersionList(List<SchemaVersion> schemaVersion) {
         this.schemaVersionList = schemaVersion;
-    }
-
-    public static Subject.SubjectBuilder newBuilder() {
-        return new Subject.SubjectBuilder();
     }
 
     public static final class SubjectBuilder {

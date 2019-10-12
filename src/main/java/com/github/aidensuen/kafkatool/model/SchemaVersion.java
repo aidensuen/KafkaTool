@@ -9,6 +9,10 @@ public class SchemaVersion {
     public SchemaVersion() {
     }
 
+    public static SchemaVersion.SchemaBuilder newBuilder() {
+        return new SchemaVersion.SchemaBuilder();
+    }
+
     public String getSubject() {
         return this.subject;
     }
@@ -39,10 +43,6 @@ public class SchemaVersion {
 
     public void setSchema(String schema) {
         this.schema = schema;
-    }
-
-    public static SchemaVersion.SchemaBuilder newBuilder() {
-        return new SchemaVersion.SchemaBuilder();
     }
 
     public static final class SchemaBuilder {

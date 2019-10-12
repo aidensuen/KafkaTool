@@ -6,16 +6,15 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.aidensuen.kafkatool.common.exception.JsonToAvroException;
 import org.apache.avro.Schema;
+import org.apache.avro.Schema.Field;
+import org.apache.avro.Schema.Type;
+import org.springframework.stereotype.Component;
 
+import java.nio.charset.Charset;
 import java.time.Instant;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
-import java.nio.charset.Charset;
-
-import org.apache.avro.Schema.Field;
-import org.apache.avro.Schema.Type;
-import org.springframework.stereotype.Component;
 
 @Component
 public class AvroJsonGenerator {

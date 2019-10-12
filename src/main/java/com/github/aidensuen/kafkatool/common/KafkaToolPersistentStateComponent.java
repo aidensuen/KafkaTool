@@ -6,11 +6,11 @@ import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
-
-import java.util.Objects;
-
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
+import java.util.Properties;
 
 @State(
         name = "KafkaToolPersistentStateComponent",
@@ -23,6 +23,8 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
     private String schemaRegistryUrl = "http://localhost:8081";
     private String avroPackagePrefix = "com.example";
     private String serializer = "KafkaAvroSerializer";
+    private Properties producerProperties = new Properties();
+    private Properties consumerProperties = new Properties();
 
     @Nullable
     public KafkaToolPersistentStateComponent getState() {
@@ -39,14 +41,16 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
 
     public void setBootstrapServers(String bootstrapServers) {
         this.bootstrapServers = bootstrapServers;
-    }
-
-    public void setProducerHistoryDataStack(FixedStack<ProducerHistoryEntry> producerHistoryDataStack) {
-        this.producerHistoryDataStack = producerHistoryDataStack;
+        this.producerProperties.put("bootstrap.servers", bootstrapServers);
+        this.consumerProperties.put("bootstrap.servers", bootstrapServers);
     }
 
     public FixedStack<ProducerHistoryEntry> getProducerHistoryDataStack() {
         return this.producerHistoryDataStack;
+    }
+
+    public void setProducerHistoryDataStack(FixedStack<ProducerHistoryEntry> producerHistoryDataStack) {
+        this.producerHistoryDataStack = producerHistoryDataStack;
     }
 
     public String getSchemaRegistryUrl() {
@@ -55,6 +59,8 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
 
     public void setSchemaRegistryUrl(String schemaRegistryUrl) {
         this.schemaRegistryUrl = schemaRegistryUrl;
+        this.producerProperties.put("schema.registry.url", schemaRegistryUrl);
+        this.consumerProperties.put("schema.registry.url", schemaRegistryUrl);
     }
 
     public void addProducerHistoryEntry(ProducerHistoryEntry producerHistoryEntry) {
@@ -69,12 +75,33 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
         this.avroPackagePrefix = avroPackagePrefix;
     }
 
+    public String getSerializer() {
+        return this.serializer;
+    }
+
     public void setSerializer(String serializer) {
         this.serializer = serializer;
     }
 
-    public String getSerializer() {
-        return this.serializer;
+    public Properties getProducerProperties() {
+        return producerProperties;
+    }
+
+    public void setProducerProperties(Properties producerProperties) {
+        this.producerProperties.putAll(producerProperties);
+    }
+
+    public Properties getConsumerProperties() {
+        return consumerProperties;
+    }
+
+    public void setConsumerProperties(Properties consumerProperties) {
+        this.consumerProperties.putAll(consumerProperties);
+    }
+
+    public void refresh(){
+        this.producerProperties.clear();
+        this.consumerProperties.clear();
     }
 
     @Override

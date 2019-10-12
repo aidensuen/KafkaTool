@@ -10,7 +10,10 @@ import com.github.aidensuen.kafkatool.model.SchemaVersion;
 import com.github.aidensuen.kafkatool.model.Subject;
 import com.intellij.notification.Notifications;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.clients.consumer.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
@@ -69,8 +72,10 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
 
     @Override
     public void getDetailedTopicList(Function<Map<String, List<PartitionInfo>>> function) {
+
+        Properties consumerProperties = this.kafkaToolPersistentStateComponent.getConsumerProperties();
+
         Properties props = new Properties();
-        props.put("bootstrap.servers", this.kafkaToolPersistentStateComponent.getBootstrapServers());
         props.put("group.id", "kafka-tool-topic-registry");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         props.put("key.deserializer", StringDeserializer.class);
@@ -79,9 +84,10 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         props.put("request.timeout.ms", 30000);
         props.put("session.timeout.ms", 15000);
         props.put("heartbeat.interval.ms", 5000);
+        props.putAll(consumerProperties);
 
         executorService.submit(() -> {
-            Map<String, List<PartitionInfo>> map = null;
+            Map<String, List<PartitionInfo>> map = new HashMap<>();
             try {
                 try (Consumer<String, Object> consumer = consumerFactory(props).createConsumer()) {
                     map = consumer.listTopics();
@@ -106,7 +112,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
                 kafkaConsumer.subscribe(Collections.singletonList(topic));
                 for (int i = 0; i < readAttempts && consumerRecords.size() < numberOfRecords; i++) {
                     try {
-                        ConsumerRecords<String, Object> records = kafkaConsumer.poll(Duration.ofSeconds(1L));
+                        ConsumerRecords<String, Object> records = kafkaConsumer.poll(Duration.ofSeconds(1000L));
                         consumerRecords.addAll(StreamSupport.stream(records.records(topic).spliterator(), false).collect(Collectors.toList()));
                         if (!records.isEmpty()) {
                             kafkaConsumer.commitAsync();
@@ -155,7 +161,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
 
     @Override
     public void listSubjectVersions(String subject, Function<List<Integer>> function) {
-        String url = String.format("%s/subjects/%s/versions/", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject);
+        String url = String.format("%s/subjects/%s/versions", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl(), subject);
         try {
             function.callBack(this.restTemplate.getForObject(url, List.class, new Object[0]));
         } catch (Exception e) {
@@ -190,21 +196,23 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         });
     }
 
-    private synchronized Consumer<String, Object> getConsumer(String deserializer, String topic){
+    private synchronized Consumer<String, Object> getConsumer(String deserializer, String topic) {
         return CONSUMER_MAP.computeIfAbsent(deserializer + topic, v -> this.consumerFactory(deserializer).createConsumer());
     }
 
     private ConsumerFactory<String, Object> consumerFactory(String deserializer) {
-        Map<String, Object> props = new HashMap();
-        props.put("bootstrap.servers", this.kafkaToolPersistentStateComponent.getBootstrapServers());
+
+        Properties consumerProperties = this.kafkaToolPersistentStateComponent.getConsumerProperties();
+
+        Properties props = new Properties();
         props.put("group.id", "kafkatool-consumer-group-id");
         props.put("key.deserializer", StringDeserializer.class);
         props.put("value.deserializer", DESERIALIZER_CLASS_MAP.get(deserializer));
-        props.put("schema.registry.url", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl());
         props.put("exclude.internal.topics", true);
         props.put("request.timeout.ms", 30000);
         props.put("session.timeout.ms", 15000);
         props.put("heartbeat.interval.ms", 5000);
+        props.putAll(consumerProperties);
         return new DefaultKafkaConsumerFactory(props);
     }
 

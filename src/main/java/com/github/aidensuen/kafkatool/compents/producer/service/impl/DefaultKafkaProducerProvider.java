@@ -11,8 +11,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 
 @Service
 public class DefaultKafkaProducerProvider implements KafkaProducerProvider<String, Object> {
@@ -28,15 +27,18 @@ public class DefaultKafkaProducerProvider implements KafkaProducerProvider<Strin
 
     public KafkaTemplate<String, Object> get(String serializerKey) {
         Class<? extends Serializer> serializer = this.kafkaToolSerializerRepository.getSerializerByKey(serializerKey);
-        Map<String, Object> props = new HashMap();
-        props.put("bootstrap.servers", this.kafkaToolPersistentStateComponent.getBootstrapServers());
-        props.put("schema.registry.url", this.kafkaToolPersistentStateComponent.getSchemaRegistryUrl());
+
+        Properties producerProperties = this.kafkaToolPersistentStateComponent.getProducerProperties();
+
+        Properties props = new Properties();
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put("value.serializer", serializer);
         props.put("acks", "1");
         props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, 1);
         props.put(ProducerConfig.RETRIES_CONFIG, 1);
         props.put("max.block.ms", 3000);
+
+        props.putAll(producerProperties);
         return new KafkaTemplate(new DefaultKafkaProducerFactory(props));
     }
 

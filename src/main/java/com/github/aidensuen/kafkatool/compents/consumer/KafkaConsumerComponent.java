@@ -133,7 +133,7 @@ public class KafkaConsumerComponent implements KafkaToolComponent, DumbAware {
         this.refreshButton.addActionListener((e) -> {
             ApplicationManager.getApplication().invokeLater(() -> {
                 ApplicationManager.getApplication().runReadAction(() -> {
-                    kafkaManagerService.consume(this.deserializer, this.topic, 100, 1, (optionalConsumerRecords) -> {
+                    kafkaManagerService.consume(this.deserializer, this.topic, 100, 3, (optionalConsumerRecords) -> {
                         SwingUtilities.invokeLater(() -> {
                             optionalConsumerRecords.ifPresent((consumerRecords) -> {
                                 if (this.clearOnPollCheckbox.isSelected()) {
