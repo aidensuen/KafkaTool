@@ -24,4 +24,6 @@ public interface KafkaManagerService {
     void getSchema(String subject, String version, Function<String> function);
 
     void deleteSchema(String subject, String version, Function<Boolean> function);
+
+    void refresh();
 }

@@ -2,6 +2,7 @@ package com.github.aidensuen.kafkatool.compents.settings;
 
 import com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent;
 import com.github.aidensuen.kafkatool.common.notify.NotificationService;
+import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
 import com.github.aidensuen.kafkatool.compents.KafkaToolComponent;
 import com.intellij.json.JsonFileType;
 import com.intellij.openapi.editor.Document;
@@ -16,7 +17,6 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentFactory.SERVICE;
@@ -49,6 +49,9 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
     private JButton restoreDefaultsButton;
     private EditorEx producerProperties;
     private EditorEx consumerProperties;
+
+    @Autowired
+    private KafkaManagerService kafkaManagerService;
 
     @Autowired
     public KafkaSettingsComponent(KafkaToolPersistentStateComponent kafkaToolPersistentStateComponent, NotificationService notificationService) {
@@ -145,6 +148,8 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
         this.avroPackagePrefixField.setText(this.kafkaToolPersistentStateComponent.getAvroPackagePrefix());
         this.avroPackagePrefixField.setText(this.kafkaToolPersistentStateComponent.getAvroPackagePrefix());
         this.saveSettingsButton.addActionListener((e) -> {
+            this.kafkaToolPersistentStateComponent.refresh();
+            this.kafkaManagerService.refresh();
             this.kafkaToolPersistentStateComponent.setBootstrapServers(this.bootstrapServersSettingField.getText());
             this.kafkaToolPersistentStateComponent.setSchemaRegistryUrl(this.schemaRegistrySettingField.getText());
             this.kafkaToolPersistentStateComponent.setAvroPackagePrefix(this.avroPackagePrefixField.getText());
@@ -153,6 +158,7 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
         });
         this.restoreDefaultsButton.addActionListener((event) -> {
             this.kafkaToolPersistentStateComponent.refresh();
+            this.kafkaManagerService.refresh();
             this.schemaRegistrySettingField.setText("http://localhost:8081");
             this.bootstrapServersSettingField.setText("localhost:9091");
             this.avroPackagePrefixField.setText("com.example");

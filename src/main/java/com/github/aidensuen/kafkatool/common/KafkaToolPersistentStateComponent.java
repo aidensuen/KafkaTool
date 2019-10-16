@@ -84,6 +84,8 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
     }
 
     public Properties getProducerProperties() {
+        producerProperties.putIfAbsent("schema.registry.url", this.getSchemaRegistryUrl());
+        producerProperties.putIfAbsent("bootstrap.servers", this.getBootstrapServers());
         return producerProperties;
     }
 
@@ -92,6 +94,8 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
     }
 
     public Properties getConsumerProperties() {
+        consumerProperties.putIfAbsent("schema.registry.url", this.getSchemaRegistryUrl());
+        consumerProperties.putIfAbsent("bootstrap.servers", this.getBootstrapServers());
         return consumerProperties;
     }
 

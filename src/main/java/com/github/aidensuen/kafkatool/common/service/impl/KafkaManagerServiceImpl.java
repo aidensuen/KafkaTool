@@ -87,10 +87,11 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         props.putAll(consumerProperties);
 
         executorService.submit(() -> {
-            Map<String, List<PartitionInfo>> map = new HashMap<>();
+            Map<String, List<PartitionInfo>> map = new TreeMap<>();
             try {
                 try (Consumer<String, Object> consumer = consumerFactory(props).createConsumer()) {
-                    map = consumer.listTopics();
+                    Map map1 = consumer.listTopics();
+                    map.putAll(map1);
                 } catch (Throwable e) {
                     throw e;
                 }
@@ -118,7 +119,9 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
                             kafkaConsumer.commitAsync();
                         }
                     } catch (Exception e) {
+                        Notifications.Bus.notify(ErrorNotification.create(e.getMessage()));
                         LOGGER.error(e.getMessage());
+
                     }
                 }
             } catch (Exception e) {
@@ -214,6 +217,11 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         props.put("heartbeat.interval.ms", 5000);
         props.putAll(consumerProperties);
         return new DefaultKafkaConsumerFactory(props);
+    }
+
+    @Override
+    public void refresh() {
+        CONSUMER_MAP.clear();
     }
 
     private ConsumerFactory<String, Object> consumerFactory(Properties props) {

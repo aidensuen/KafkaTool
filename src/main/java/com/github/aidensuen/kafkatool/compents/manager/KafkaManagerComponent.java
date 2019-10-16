@@ -3,6 +3,7 @@ package com.github.aidensuen.kafkatool.compents.manager;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
 import com.github.aidensuen.kafkatool.compents.KafkaToolComponent;
 import com.github.aidensuen.kafkatool.model.SchemaVersion;
+import com.github.aidensuen.kafkatool.model.Subject;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.intellij.openapi.project.DumbAware;
@@ -14,19 +15,25 @@ import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.treeStructure.Tree;
 import org.apache.avro.Schema;
 import org.apache.kafka.common.PartitionInfo;
+import org.apache.xmlbeans.impl.common.Levenshtein;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -35,6 +42,8 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
 
     private static final Map<String, List<SchemaVersion>> SCHEMA_MAP = new ConcurrentHashMap<>();
     private static final Map<String, List<PartitionInfo>> TOPIC_MAP = Maps.newHashMap();
+
+    private static final float SIMILARITYRATIO = 0.15f;
 
     @Autowired
     private KafkaManagerService kafkaManagerService;
@@ -55,9 +64,19 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
     private DefaultMutableTreeNode subjectsTreeNode;
     private String selectedSubject;
     private String selectedVersion;
+    private JTextField topicName;
+    private JTextField subjectName;
+
+    private Map<String, List<PartitionInfo>> globalTopicList = new TreeMap<>();
+    private List<Subject> globalSubjects = new ArrayList<>();
 
     public KafkaManagerComponent() {
         this.initUI();
+    }
+
+    public static Float getSimilarityRatio(String str, String target) {
+        int max = Math.max(str.length(), target.length());
+        return 1 - (float) Levenshtein.distance(str, target) / max;
     }
 
     private void initUI() {
@@ -76,18 +95,17 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
 
     }
 
-
     private void initTop(JPanel mainPanel) {
         JPanel jPanel = new JPanel();
-        jPanel.setLayout(new GridLayout(1, 5));
+        jPanel.setLayout(new BorderLayout());
         refreshTopicsButton = new JButton("Refresh");
-        jPanel.add(refreshTopicsButton);
+        jPanel.add(refreshTopicsButton, BorderLayout.WEST);
 
-        JPanel parent = new JPanel();
-        parent.setLayout(new BorderLayout());
-        parent.add(jPanel, BorderLayout.WEST);
+        topicName = new JTextField();
+        topicName.setToolTipText("Topic");
+        jPanel.add(topicName, BorderLayout.CENTER);
 
-        mainPanel.add(parent, BorderLayout.NORTH);
+        mainPanel.add(jPanel, BorderLayout.NORTH);
     }
 
     private void initCenter(JPanel mainPanel) {
@@ -120,15 +138,15 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
     private void initSchema(JPanel mainPanel) {
 
         JPanel jPanel = new JPanel();
-        jPanel.setLayout(new GridLayout(1, 5));
+        jPanel.setLayout(new BorderLayout());
         refreshSubjectsButton = new JButton("Refresh");
-        jPanel.add(refreshSubjectsButton);
+        jPanel.add(refreshSubjectsButton, BorderLayout.WEST);
 
-        JPanel parent = new JPanel();
-        parent.setLayout(new BorderLayout());
-        parent.add(jPanel, BorderLayout.WEST);
+        subjectName = new JTextField();
+        subjectName.setToolTipText("Subject");
+        jPanel.add(subjectName, BorderLayout.CENTER);
 
-        mainPanel.add(parent, BorderLayout.NORTH);
+        mainPanel.add(jPanel, BorderLayout.NORTH);
 
         JSplitPane jSplitPane = new JSplitPane();
         jSplitPane.setDividerLocation(0.4);
@@ -187,6 +205,8 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
             this.topicsTreeNode.removeAllChildren();
             this.kafkaManagerService.getDetailedTopicList((topicList) -> {
                 SwingUtilities.invokeLater(() -> {
+                    globalTopicList.clear();
+                    globalTopicList.putAll(topicList);
                     topicList.forEach((topic, partitionInfoList) -> {
                         DefaultMutableTreeNode topicTreeNode = new DefaultMutableTreeNode(topic);
                         partitionInfoList.forEach((partitionInfo) -> {
@@ -257,6 +277,44 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
 
         });
 
+        this.topicName.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String source = topicName.getText();
+                filterTopics(source);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String source = topicName.getText();
+                filterTopics(source);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
+
+        this.subjectName.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String source = topicName.getText();
+                filterSubjets(source);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String source = topicName.getText();
+                filterSubjets(source);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
+
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         return contentFactory.createContent(this.tabbedPane, "Manager", false);
     }
@@ -265,6 +323,8 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
         this.subjectsTreeNode.removeAllChildren();
         this.kafkaManagerService.listSubjects(subjects -> {
             SwingUtilities.invokeLater(() -> {
+                globalSubjects.clear();
+                globalSubjects.addAll(subjects);
                 subjects.forEach((subject) -> {
                     DefaultMutableTreeNode subjectTreeNode = new DefaultMutableTreeNode(subject.getSubjectName());
                     SCHEMA_MAP.put(subject.getSubjectName(), subject.getSchemaVersionList());
@@ -278,6 +338,58 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
             });
         });
 
+    }
+
+    private void filterTopics(String source) {
+        topicsTreeNode.removeAllChildren();
+        if (StringUtils.isEmpty(source)) {
+            globalTopicList.forEach((topic, partitionInfoList) -> {
+                DefaultMutableTreeNode topicTreeNode = new DefaultMutableTreeNode(topic);
+                partitionInfoList.forEach((partitionInfo) -> {
+                    DefaultMutableTreeNode partitionTreeNode = new DefaultMutableTreeNode(String.valueOf(partitionInfo.partition()));
+                    topicTreeNode.add(partitionTreeNode);
+                });
+                topicsTreeNode.add(topicTreeNode);
+            });
+        } else {
+            globalTopicList.forEach((topic, partitionInfoList) -> {
+                if (getSimilarityRatio(source, topic).compareTo(Float.valueOf(SIMILARITYRATIO)) > 0) {
+                    DefaultMutableTreeNode topicTreeNode = new DefaultMutableTreeNode(topic);
+                    partitionInfoList.forEach((partitionInfo) -> {
+                        DefaultMutableTreeNode partitionTreeNode = new DefaultMutableTreeNode(String.valueOf(partitionInfo.partition()));
+                        topicTreeNode.add(partitionTreeNode);
+                    });
+                    topicsTreeNode.add(topicTreeNode);
+                }
+            });
+        }
+        topicTree.updateUI();
+    }
+
+    private void filterSubjets(String source) {
+        subjectsTreeNode.removeAllChildren();
+        if (StringUtils.isEmpty(source)) {
+            globalSubjects.forEach((subject) -> {
+                DefaultMutableTreeNode subjectTreeNode = new DefaultMutableTreeNode(subject.getSubjectName());
+                subject.getSchemaVersionList().forEach((schemaVersion) -> {
+                    DefaultMutableTreeNode versionTreeNode = new DefaultMutableTreeNode(schemaVersion.getVersion());
+                    subjectTreeNode.add(versionTreeNode);
+                });
+                subjectsTreeNode.add(subjectTreeNode);
+            });
+        } else {
+            globalSubjects.forEach((subject) -> {
+                if (getSimilarityRatio(source, subject.getSubjectName()).compareTo(Float.valueOf(SIMILARITYRATIO)) > 0) {
+                    DefaultMutableTreeNode subjectTreeNode = new DefaultMutableTreeNode(subject.getSubjectName());
+                    subject.getSchemaVersionList().forEach((schemaVersion) -> {
+                        DefaultMutableTreeNode versionTreeNode = new DefaultMutableTreeNode(schemaVersion.getVersion());
+                        subjectTreeNode.add(versionTreeNode);
+                    });
+                    subjectsTreeNode.add(subjectTreeNode);
+                }
+            });
+        }
+        subjectTree.updateUI();
     }
 
     public KafkaManagerService getKafkaManagerService() {
