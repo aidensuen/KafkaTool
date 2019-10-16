@@ -29,6 +29,7 @@ import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -76,7 +77,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         Properties consumerProperties = this.kafkaToolPersistentStateComponent.getConsumerProperties();
 
         Properties props = new Properties();
-        props.put("group.id", "kafka-tool-topic-registry");
+        props.put("group.id", "kafka-tool-topic-registry-" + ThreadLocalRandom.current().nextInt());
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         props.put("key.deserializer", StringDeserializer.class);
         props.put("value.deserializer", StringDeserializer.class);
@@ -208,7 +209,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
         Properties consumerProperties = this.kafkaToolPersistentStateComponent.getConsumerProperties();
 
         Properties props = new Properties();
-        props.put("group.id", "kafkatool-consumer-group-id");
+        props.put("group.id", "kafkatool-consumer-group-id-" + ThreadLocalRandom.current().nextInt());
         props.put("key.deserializer", StringDeserializer.class);
         props.put("value.deserializer", DESERIALIZER_CLASS_MAP.get(deserializer));
         props.put("exclude.internal.topics", true);
