@@ -3,7 +3,6 @@ package com.github.aidensuen.kafkatool.compents.producer.service.impl;
 
 import com.github.aidensuen.kafkatool.common.exception.KafkaToolException;
 import com.github.aidensuen.kafkatool.compents.producer.service.AvroClassScanner;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import com.google.common.reflect.ClassPath;
 import com.intellij.openapi.module.Module;
@@ -12,9 +11,12 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.roots.OrderRootType;
 import org.apache.avro.specific.SpecificRecordBase;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -29,7 +31,8 @@ public class AvroClassScannerImpl implements AvroClassScanner {
     private static final String DOLLAR_SIGN_CHARACTER = "$";
     private static final String ANNOYING_CHARACTERS = "!/";
     private static final String EMPTY_STRING = "";
-    private static final String MAIN_SUFFIX = "_main";
+
+    private ResourceLoader resourceLoader = new PathMatchingResourcePatternResolver();
 
     public Set<Class> loadAvroClassesFromProject(Project project, String packageName) {
         Objects.requireNonNull(project);
@@ -37,9 +40,7 @@ public class AvroClassScannerImpl implements AvroClassScanner {
 
         Module[] modules = ModuleManager.getInstance(project).getModules();
 
-        List<? extends Class> avroClassListResult = Arrays.stream(modules).filter((module) -> {
-            return module.getName().contains(MAIN_SUFFIX);
-        }).map((module) -> {
+        List<? extends Class> avroClassListResult = Arrays.stream(modules).map((module) -> {
             return this.getAvroClassesFromModule(module, packageName);
         }).flatMap(Collection::stream).collect(Collectors.toList());
         return Sets.newHashSet(avroClassListResult);
@@ -63,12 +64,30 @@ public class AvroClassScannerImpl implements AvroClassScanner {
         }).toArray((x) -> {
             return new URL[x];
         });
-        URLClassLoader classLoader = new URLClassLoader(urls);
+        Set<URL> urlList = new HashSet<>();
+        try {
+            String searchPath = "file:" + module.getModuleFilePath().replaceAll(module.getName() + "\\.iml", "")
+                    .replaceAll("\\\\", "/")
+                    .replaceAll("\\.idea.*", "")
+                    + "**/*.jar";
+            ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+            Resource[] resources = resolver.getResources(searchPath);
+            for (Resource re : resources) {
+                urlList.add(re.getURL());
+            }
+        } catch (Exception var9) {
+            throw new KafkaToolException("Error occurred during avro class extraction", var9);
+        }
+
+        urlList.addAll(Arrays.asList(urls));
+
+        URLClassLoader urlClassLoader = new URLClassLoader(urlList.toArray(new URL[urlList.size()]));
 
         try {
-            ClassPath classPath = ClassPath.from(classLoader);
-            ImmutableSet<ClassPath.ClassInfo> topLevelClasses = classPath.getAllClasses();
-            return topLevelClasses.stream().filter(Objects::nonNull).filter((classInfo) -> {
+            ClassPath classPath = ClassPath.from(urlClassLoader);
+            Set<ClassPath.ClassInfo> topLevelClasses = classPath.getAllClasses();
+
+            return topLevelClasses.parallelStream().filter(Objects::nonNull).filter((classInfo) -> {
                 return classInfo.getName().contains(packageName);
             }).filter((classInfo) -> {
                 return !classInfo.getName().contains(DOLLAR_SIGN_CHARACTER);
@@ -77,8 +96,10 @@ public class AvroClassScannerImpl implements AvroClassScanner {
             }).filter((aClass) -> {
                 return aClass.getSuperclass().getCanonicalName().equals(SpecificRecordBase.class.getCanonicalName());
             }).collect(Collectors.toList());
-        } catch (IOException var9) {
+        } catch (Exception var9) {
             throw new KafkaToolException("Error occurred during avro class extraction", var9);
         }
     }
+
+
 }

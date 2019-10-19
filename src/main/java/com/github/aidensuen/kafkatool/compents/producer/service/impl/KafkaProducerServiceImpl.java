@@ -83,14 +83,19 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
     public void refreshAvroClassList(Project project, Function<List<String>> function) {
         executorService.submit(() -> {
             List<String> result = Optional.ofNullable(project).map((nonNullProject) -> {
-                Set<Class> classesInPackage = avroClassScanner.loadAvroClassesFromProject(project, kafkaToolPersistentStateComponent.getAvroPackagePrefix());
-                if (classesInPackage.isEmpty()) {
-                    notificationService.info("No classes found. Make sure you have Avro classes that extends " + SpecificRecordBase.class.getName() + " on your classpath and that you've properly configured the 'Avro Package Prefix' property under the 'Settings' tab.");
+                try {
+                    Set<Class> classesInPackage = avroClassScanner.loadAvroClassesFromProject(project, kafkaToolPersistentStateComponent.getAvroPackagePrefix());
+                    if (classesInPackage.isEmpty()) {
+                        notificationService.info("No classes found. Make sure you have Avro classes that extends " + SpecificRecordBase.class.getName() + " on your classpath and that you've properly configured the 'Avro Package Prefix' property under the 'Settings' tab.");
+                    }
+                    this.avroClassMap.clear();
+                    return classesInPackage.stream().peek((aClass) -> {
+                        this.avroClassMap.put(aClass.getName(), aClass);
+                    }).map(Class::getName).sorted().collect(Collectors.toList());
+                } catch (Exception e) {
+                    Notifications.Bus.notify(ErrorNotification.create("Failed to refresh Avro classes." + e.getMessage()));
                 }
-                this.avroClassMap.clear();
-                return classesInPackage.stream().peek((aClass) -> {
-                    this.avroClassMap.put(aClass.getName(), aClass);
-                }).map(Class::getName).sorted().collect(Collectors.toList());
+                return new ArrayList<String>();
             }).orElseGet(() -> {
                 notificationService.error("Failed to refresh Avro classes.");
                 return Collections.emptyList();

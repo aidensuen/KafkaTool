@@ -43,7 +43,7 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
     private static final Map<String, List<SchemaVersion>> SCHEMA_MAP = new ConcurrentHashMap<>();
     private static final Map<String, List<PartitionInfo>> TOPIC_MAP = Maps.newHashMap();
 
-    private static final float SIMILARITYRATIO = 0.15f;
+    private static final float SIMILARITYRATIO = 0.3f;
 
     @Autowired
     private KafkaManagerService kafkaManagerService;
@@ -299,14 +299,14 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
         this.subjectName.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                String source = topicName.getText();
-                filterSubjets(source);
+                String source = subjectName.getText();
+                filterSubjects(source);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                String source = topicName.getText();
-                filterSubjets(source);
+                String source = subjectName.getText();
+                filterSubjects(source);
             }
 
             @Override
@@ -352,21 +352,31 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
                 topicsTreeNode.add(topicTreeNode);
             });
         } else {
-            globalTopicList.forEach((topic, partitionInfoList) -> {
-                if (getSimilarityRatio(source, topic).compareTo(Float.valueOf(SIMILARITYRATIO)) > 0) {
-                    DefaultMutableTreeNode topicTreeNode = new DefaultMutableTreeNode(topic);
-                    partitionInfoList.forEach((partitionInfo) -> {
-                        DefaultMutableTreeNode partitionTreeNode = new DefaultMutableTreeNode(String.valueOf(partitionInfo.partition()));
-                        topicTreeNode.add(partitionTreeNode);
-                    });
-                    topicsTreeNode.add(topicTreeNode);
-                }
+            globalTopicList.keySet().stream().filter(topic -> getSimilarityRatio(source, topic).compareTo(SIMILARITYRATIO) > 0)
+                    .sorted((o1, o2) -> {
+                        float t1 = getSimilarityRatio(source, o1);
+                        float t2 = getSimilarityRatio(source, o2);
+                        if (t1 > t2) {
+                            return -1;
+                        } else if (t1 < t2) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    }).forEach((topic) -> {
+                DefaultMutableTreeNode topicTreeNode = new DefaultMutableTreeNode(topic);
+                List<PartitionInfo> partitionInfoList = globalTopicList.get(topic);
+                partitionInfoList.forEach((partitionInfo) -> {
+                    DefaultMutableTreeNode partitionTreeNode = new DefaultMutableTreeNode(String.valueOf(partitionInfo.partition()));
+                    topicTreeNode.add(partitionTreeNode);
+                });
+                topicsTreeNode.add(topicTreeNode);
             });
         }
         topicTree.updateUI();
     }
 
-    private void filterSubjets(String source) {
+    private void filterSubjects(String source) {
         subjectsTreeNode.removeAllChildren();
         if (StringUtils.isEmpty(source)) {
             globalSubjects.forEach((subject) -> {
@@ -378,15 +388,25 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
                 subjectsTreeNode.add(subjectTreeNode);
             });
         } else {
-            globalSubjects.forEach((subject) -> {
-                if (getSimilarityRatio(source, subject.getSubjectName()).compareTo(Float.valueOf(SIMILARITYRATIO)) > 0) {
-                    DefaultMutableTreeNode subjectTreeNode = new DefaultMutableTreeNode(subject.getSubjectName());
-                    subject.getSchemaVersionList().forEach((schemaVersion) -> {
-                        DefaultMutableTreeNode versionTreeNode = new DefaultMutableTreeNode(schemaVersion.getVersion());
-                        subjectTreeNode.add(versionTreeNode);
-                    });
-                    subjectsTreeNode.add(subjectTreeNode);
-                }
+            globalSubjects.stream().filter(subject -> getSimilarityRatio(source, subject.getSubjectName()).compareTo(SIMILARITYRATIO) > 0)
+                    .sorted(
+                            (o1, o2) -> {
+                                float t1 = getSimilarityRatio(source, o1.getSubjectName());
+                                float t2 = getSimilarityRatio(source, o2.getSubjectName());
+                                if (t1 > t2) {
+                                    return -1;
+                                } else if (t1 < t2) {
+                                    return 1;
+                                } else {
+                                    return 0;
+                                }
+                            }).forEach((subject) -> {
+                DefaultMutableTreeNode subjectTreeNode = new DefaultMutableTreeNode(subject.getSubjectName());
+                subject.getSchemaVersionList().forEach((schemaVersion) -> {
+                    DefaultMutableTreeNode versionTreeNode = new DefaultMutableTreeNode(schemaVersion.getVersion());
+                    subjectTreeNode.add(versionTreeNode);
+                });
+                subjectsTreeNode.add(subjectTreeNode);
             });
         }
         subjectTree.updateUI();
