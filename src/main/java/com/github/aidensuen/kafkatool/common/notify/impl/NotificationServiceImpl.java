@@ -3,6 +3,7 @@ package com.github.aidensuen.kafkatool.common.notify.impl;
 import com.github.aidensuen.kafkatool.common.notify.NotificationService;
 import com.github.aidensuen.kafkatool.common.notify.model.ErrorNotification;
 import com.github.aidensuen.kafkatool.common.notify.model.SuccessNotification;
+import com.github.aidensuen.kafkatool.common.notify.model.WarningNotification;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications.Bus;
@@ -25,5 +26,10 @@ public class NotificationServiceImpl implements NotificationService {
 
     public void error(String message) {
         Bus.notify(ErrorNotification.create(message, "Error"));
+    }
+
+    @Override
+    public void warning(String message) {
+        Bus.notify(WarningNotification.create(message, "Warning"));
     }
 }

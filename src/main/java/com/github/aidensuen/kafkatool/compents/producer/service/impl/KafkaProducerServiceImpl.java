@@ -118,7 +118,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
             Notifications.Bus.notify(ErrorNotification.create("Failed to populate Avro schema."));
         }
 
-        return schema;
+        return schema.replaceAll("\r", "");
     }
 
     @Override
