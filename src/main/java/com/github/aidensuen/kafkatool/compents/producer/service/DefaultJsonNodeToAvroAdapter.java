@@ -13,7 +13,7 @@ import org.apache.avro.generic.GenericRecord;
 import org.springframework.stereotype.Service;
 
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,11 +46,11 @@ public class DefaultJsonNodeToAvroAdapter implements BiFunction<JsonNode, Schema
         } else if (schema.getType() == Type.UNION) {
             parsedObject = this.resolveUnion(schema, jsonNode);
         } else if (schema.getType() == Type.FIXED) {
-            parsedObject = new Fixed(schema, jsonNode.textValue().getBytes(Charset.forName("UTF-8")));
+            parsedObject = new Fixed(schema, jsonNode.textValue().getBytes(StandardCharsets.UTF_8));
         } else if (schema.getType() == Type.STRING && jsonNode.textValue() != null && jsonNode.isTextual()) {
             parsedObject = jsonNode.textValue();
         } else if (schema.getType() == Type.BYTES && jsonNode.isTextual()) {
-            parsedObject = ByteBuffer.wrap(jsonNode.textValue().getBytes(Charset.forName("UTF-8")));
+            parsedObject = ByteBuffer.wrap(jsonNode.textValue().getBytes(StandardCharsets.UTF_8));
         } else if (schema.getType() == Type.INT && jsonNode.isNumber()) {
             parsedObject = jsonNode.intValue();
         } else if (schema.getType() == Type.LONG && jsonNode.isNumber()) {

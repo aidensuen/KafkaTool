@@ -10,7 +10,7 @@ import org.apache.avro.Schema.Field;
 import org.apache.avro.Schema.Type;
 import org.springframework.stereotype.Component;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.List;
 import java.util.Random;
@@ -59,7 +59,7 @@ public class AvroJsonGenerator {
                 jsonNode = this.jsonNodeFactory.nullNode();
             }
         } else {
-            jsonNode = this.jsonNodeFactory.binaryNode("".getBytes(Charset.forName("UTF-8")));
+            jsonNode = this.jsonNodeFactory.binaryNode("".getBytes(StandardCharsets.UTF_8));
         }
 
         return (JsonNode) jsonNode;

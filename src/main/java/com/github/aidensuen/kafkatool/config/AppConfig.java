@@ -1,21 +1,23 @@
 package com.github.aidensuen.kafkatool.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.web.client.RestOperations;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Configuration
-@ComponentScan(basePackages = {"com.github.aidensuen.kafkatool"})
+@SpringBootApplication(scanBasePackages = "com.github.aidensuen")
 public class AppConfig {
+
+    @Autowired
+    private CloseableHttpClient httpClient;
 
     @Bean
     public ObjectMapper objectMapper() {
@@ -23,18 +25,24 @@ public class AppConfig {
     }
 
     @Bean
-    @ConditionalOnMissingBean({RestOperations.class, RestTemplate.class})
-    public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
-        return new RestTemplate(factory);
+    public HttpComponentsClientHttpRequestFactory clientHttpRequestFactory() {
+        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
+        clientHttpRequestFactory.setHttpClient(httpClient);
+        return clientHttpRequestFactory;
     }
 
     @Bean
-    @ConditionalOnMissingBean({ClientHttpRequestFactory.class})
-    public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
-        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
-        factory.setReadTimeout(15000);
-        factory.setConnectTimeout(15000);
-        return factory;
+    public TaskScheduler taskScheduler() {
+        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+        scheduler.setThreadNamePrefix("poolScheduler");
+        scheduler.setPoolSize(50);
+        return scheduler;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory());
+        return restTemplate;
     }
 
     @Bean
