@@ -15,6 +15,7 @@
         &lt;li&gt;Schema Registry Viewer&lt;/li&gt;
         &lt;/ul&gt;
     </description>
+    <depends>org.jetbrains.plugins.yaml</depends>
     <idea-version since-build="193"/>
     <extensions defaultExtensionNs="com.intellij">
         <applicationService

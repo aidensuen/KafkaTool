@@ -21,6 +21,7 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentFactory.SERVICE;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.yaml.YAMLFileType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.env.YamlPropertySourceLoader;
 import org.springframework.context.ApplicationContext;
@@ -117,7 +118,7 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
         producerPanel.setBorder(BorderFactory.createTitledBorder("Kafka Properties"));
 
         EditorHighlighterFactory editorHighlighterFactory = EditorHighlighterFactory.getInstance();
-        SyntaxHighlighter syntaxHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(JsonFileType.INSTANCE, project, null);
+        SyntaxHighlighter syntaxHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(YAMLFileType.YML, project, null);
         EditorColorsScheme globalScheme = EditorColorsManager.getInstance().getGlobalScheme();
         EditorFactory factory = EditorFactory.getInstance();
         Document schemaDocument = ((EditorFactoryImpl) factory).createDocument("", false, true);

@@ -22,6 +22,12 @@ allprojects {
         maven {
             url 'https://maven.aliyun.com/repository/spring/'
         }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
+        }
         maven { url "http://packages.confluent.io/maven/" }
         mavenLocal()
     }
@@ -41,6 +47,7 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     pluginName 'Kafka Tool'
+    plugins = ['org.jetbrains.plugins.yaml:193.5233.63']
     version '2019.3.5'
     updateSinceUntilBuild false
 }
