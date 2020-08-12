@@ -22,16 +22,22 @@ import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentFactory.SERVICE;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.PropertiesPropertySource;
+import org.springframework.boot.env.YamlPropertySourceLoader;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.PropertySource;
+import org.springframework.core.env.StandardEnvironment;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.support.ResourcePropertySource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ReflectionUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.ByteArrayInputStream;
-import java.util.Map;
-import java.util.Properties;
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
 public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
@@ -47,11 +53,13 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
     private JTextField avroPackagePrefixField;
     private JButton saveSettingsButton;
     private JButton restoreDefaultsButton;
-    private EditorEx producerProperties;
-    private EditorEx consumerProperties;
+    private EditorEx kafkaProperties;
 
     @Autowired
     private KafkaManagerService kafkaManagerService;
+
+    @Autowired
+    private ApplicationContext context;
 
     @Autowired
     public KafkaSettingsComponent(KafkaToolPersistentStateComponent kafkaToolPersistentStateComponent, NotificationService notificationService) {
@@ -103,43 +111,29 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
     @Override
     public Content getContent(@NotNull Project project) {
 
-        JPanel propertiesPanel = new JPanel(new GridLayout(2, 1, 1, 0));
+        JPanel propertiesPanel = new JPanel(new GridLayout(1, 1, 1, 0));
 
         JPanel producerPanel = new JPanel(new BorderLayout());
-        producerPanel.setBorder(BorderFactory.createTitledBorder("Producer Properties"));
-
-        JPanel consumerPanel = new JPanel(new BorderLayout());
-        consumerPanel.setBorder(BorderFactory.createTitledBorder("Consumer Properties"));
-
+        producerPanel.setBorder(BorderFactory.createTitledBorder("Kafka Properties"));
 
         EditorHighlighterFactory editorHighlighterFactory = EditorHighlighterFactory.getInstance();
         SyntaxHighlighter syntaxHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(JsonFileType.INSTANCE, project, null);
         EditorColorsScheme globalScheme = EditorColorsManager.getInstance().getGlobalScheme();
         EditorFactory factory = EditorFactory.getInstance();
         Document schemaDocument = ((EditorFactoryImpl) factory).createDocument("", false, true);
-        this.producerProperties = (EditorEx) factory.createEditor(schemaDocument, project);
-        this.producerProperties.setHighlighter(editorHighlighterFactory.createEditorHighlighter(syntaxHighlighter, globalScheme));
-        this.producerProperties.setCaretVisible(true);
-        this.producerProperties.setCaretEnabled(true);
-        this.producerProperties.setViewer(false);
-        this.producerProperties.getFoldingModel().setFoldingEnabled(true);
-        EditorSettings settings = this.producerProperties.getSettings();
+        this.kafkaProperties = (EditorEx) factory.createEditor(schemaDocument, project);
+        this.kafkaProperties.setHighlighter(editorHighlighterFactory.createEditorHighlighter(syntaxHighlighter, globalScheme));
+        this.kafkaProperties.setCaretVisible(true);
+        this.kafkaProperties.setCaretEnabled(true);
+        this.kafkaProperties.setViewer(false);
+        this.kafkaProperties.getFoldingModel().setFoldingEnabled(true);
+        EditorSettings settings = this.kafkaProperties.getSettings();
         settings.setAutoCodeFoldingEnabled(true);
         settings.setFoldingOutlineShown(true);
         settings.setTabSize(4);
         settings.setAutoCodeFoldingEnabled(true);
-        producerPanel.add(this.producerProperties.getComponent(), BorderLayout.CENTER);
+        producerPanel.add(this.kafkaProperties.getComponent(), BorderLayout.CENTER);
         propertiesPanel.add(producerPanel);
-
-        Document payloadDocument = ((EditorFactoryImpl) factory).createDocument("", false, true);
-        this.consumerProperties = (EditorEx) factory.createEditor(payloadDocument, project);
-        this.consumerProperties.setHighlighter(editorHighlighterFactory.createEditorHighlighter(syntaxHighlighter, globalScheme));
-        this.consumerProperties.setCaretVisible(true);
-        this.consumerProperties.setCaretEnabled(true);
-        this.consumerProperties.setViewer(false);
-        this.consumerProperties.getFoldingModel().setFoldingEnabled(true);
-        consumerPanel.add(this.consumerProperties.getComponent(), BorderLayout.CENTER);
-        propertiesPanel.add(consumerPanel);
 
         this.mainPanel.add(propertiesPanel, BorderLayout.CENTER);
 
@@ -162,33 +156,34 @@ public class KafkaSettingsComponent implements KafkaToolComponent, DumbAware {
             this.schemaRegistrySettingField.setText("http://localhost:8081");
             this.bootstrapServersSettingField.setText("localhost:9091");
             this.avroPackagePrefixField.setText("com.example");
-            this.producerProperties.getDocument().setText("");
-            this.consumerProperties.getDocument().setText("");
+            this.kafkaProperties.getDocument().setText("");
         });
 
         ContentFactory contentFactory = SERVICE.getInstance();
         return contentFactory.createContent(this.mainPanel, SETTINGS_LABEL, false);
     }
 
-    private void resolveProperties() {
-        InputStreamResource produderInputStreamResource = new InputStreamResource(new ByteArrayInputStream(this.producerProperties.getDocument().getText().getBytes()));
-        InputStreamResource consumerInputStreamResource = new InputStreamResource(new ByteArrayInputStream(this.consumerProperties.getDocument().getText().getBytes()));
+    private synchronized void resolveProperties() {
         try {
-            PropertiesPropertySource produderResource = new ResourcePropertySource(produderInputStreamResource);
-            PropertiesPropertySource consumerResource = new ResourcePropertySource(consumerInputStreamResource);
-            Map iproduderProperties = produderResource.getSource();
-            Map iconsumerProperties = consumerResource.getSource();
-            iproduderProperties.remove("bootstrap.servers");
-            iproduderProperties.remove("value.serializer");
-            iproduderProperties.remove("key.serializer");
-            iproduderProperties.remove("schema.registry.url");
+            InputStreamResource kafkaPropertiesInputStreamResource = new InputStreamResource(new ByteArrayInputStream(this.kafkaProperties.getDocument().getText().getBytes()));
 
-            iconsumerProperties.remove("bootstrap.servers");
-            iconsumerProperties.remove("value.deserializer");
-            iconsumerProperties.remove("key.deserializer");
-            iconsumerProperties.remove("schema.registry.url");
-            kafkaToolPersistentStateComponent.setProducerProperties((Properties) iproduderProperties);
-            kafkaToolPersistentStateComponent.setConsumerProperties((Properties) iconsumerProperties);
+            YamlPropertySourceLoader yamlPropertySourceLoader = new YamlPropertySourceLoader();
+            List<PropertySource<?>> propertySources = yamlPropertySourceLoader.load("kafkaProperties", kafkaPropertiesInputStreamResource);
+
+            MutablePropertySources mutablePropertySources = ((StandardEnvironment) this.context.getEnvironment()).getPropertySources();
+            propertySources.forEach(propertySource -> {
+                if (mutablePropertySources.contains(propertySource.getName())) {
+                    mutablePropertySources.replace(propertySource.getName(), propertySource);
+                } else {
+                    mutablePropertySources.addFirst(propertySource);
+                }
+            });
+            Field refreshedField = ReflectionUtils.findField(this.context.getClass(), "refreshed");
+            ReflectionUtils.makeAccessible(refreshedField);
+            AtomicBoolean refreshed = (AtomicBoolean) ReflectionUtils.getField(refreshedField, this.context);
+            refreshed.set(false);
+            ((AnnotationConfigApplicationContext) this.context).close();
+            ((AnnotationConfigApplicationContext) this.context).refresh();
         } catch (Exception e) {
             this.notificationService.error(e.getMessage());
         }

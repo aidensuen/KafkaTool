@@ -325,7 +325,7 @@ public class KafkaManagerComponent implements KafkaToolComponent, DumbAware {
             SwingUtilities.invokeLater(() -> {
                 globalSubjects.clear();
                 globalSubjects.addAll(subjects);
-                subjects.forEach((subject) -> {
+                globalSubjects.forEach((subject) -> {
                     DefaultMutableTreeNode subjectTreeNode = new DefaultMutableTreeNode(subject.getSubjectName());
                     SCHEMA_MAP.put(subject.getSubjectName(), subject.getSchemaVersionList());
                     subject.getSchemaVersionList().forEach((schemaVersion) -> {

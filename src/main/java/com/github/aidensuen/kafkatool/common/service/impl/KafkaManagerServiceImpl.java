@@ -3,6 +3,7 @@ package com.github.aidensuen.kafkatool.common.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.aidensuen.kafkatool.common.Function;
 import com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent;
+import com.github.aidensuen.kafkatool.common.RestTemplate;
 import com.github.aidensuen.kafkatool.common.exception.KafkaToolException;
 import com.github.aidensuen.kafkatool.common.notify.model.ErrorNotification;
 import com.github.aidensuen.kafkatool.common.service.KafkaManagerService;
@@ -22,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -74,7 +74,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
     @Override
     public void getDetailedTopicList(Function<Map<String, List<PartitionInfo>>> function) {
 
-        Properties consumerProperties = this.kafkaToolPersistentStateComponent.getConsumerProperties();
+        Map<String, Object> consumerProperties = this.kafkaToolPersistentStateComponent.getConsumerProperties();
 
         Properties props = new Properties();
         props.put("group.id", "kafka-tool-topic-registry-" + ThreadLocalRandom.current().nextInt());
@@ -141,8 +141,8 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
                 List<String> subjects = this.restTemplate.getForObject(listSubjectsUrl, List.class);
                 List<Subject> subjectList = subjects.stream().map((subjectName) -> {
                     List<SchemaVersion> schemaVersionList = new ArrayList();
-                    this.listSubjectVersions(subjectName, versons -> {
-                        versons.forEach((version) -> {
+                    this.listSubjectVersions(subjectName, versions -> {
+                        versions.forEach((version) -> {
                             String versionStr = String.valueOf(version);
                             this.getSchema(subjectName, versionStr, schema -> {
                                 try {
@@ -206,7 +206,7 @@ public class KafkaManagerServiceImpl implements KafkaManagerService {
 
     private ConsumerFactory<String, Object> consumerFactory(String deserializer) {
 
-        Properties consumerProperties = this.kafkaToolPersistentStateComponent.getConsumerProperties();
+        Map<String, Object> consumerProperties = this.kafkaToolPersistentStateComponent.getConsumerProperties();
 
         Properties props = new Properties();
         props.put("group.id", "kafkatool-consumer-group-id-" + ThreadLocalRandom.current().nextInt());

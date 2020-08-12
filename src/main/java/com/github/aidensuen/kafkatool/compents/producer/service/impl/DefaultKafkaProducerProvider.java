@@ -11,6 +11,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Properties;
 
 @Service
@@ -28,7 +29,7 @@ public class DefaultKafkaProducerProvider implements KafkaProducerProvider<Strin
     public KafkaTemplate<String, Object> get(String serializerKey) {
         Class<? extends Serializer> serializer = this.kafkaToolSerializerRepository.getSerializerByKey(serializerKey);
 
-        Properties producerProperties = this.kafkaToolPersistentStateComponent.getProducerProperties();
+        Map<String, Object> producerProperties = this.kafkaToolPersistentStateComponent.getProducerProperties();
 
         Properties props = new Properties();
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);

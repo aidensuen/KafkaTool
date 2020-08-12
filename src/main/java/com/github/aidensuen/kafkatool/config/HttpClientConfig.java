@@ -20,18 +20,19 @@ import org.apache.http.protocol.HttpContext;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-@PropertySource(value = "file:${HOME}/kafkaTool.properties")
+@EnableConfigurationProperties({HttpClientProperties.class, KafkaProperties.class})
 @EnableScheduling
 public class HttpClientConfig {
 
@@ -39,17 +40,19 @@ public class HttpClientConfig {
     private static final int DEFAULT_KEEP_ALIVE_TIME_MILLIS = 20 * 1000;
     private static final int CLOSE_IDLE_CONNECTION_WAIT_TIME_SECS = 30;
     private final HttpClientProperties properties;
+    private final KafkaProperties kafkaProperties;
 
-    public HttpClientConfig(HttpClientProperties properties) {
+    public HttpClientConfig(HttpClientProperties properties, KafkaProperties kafkaProperties) {
         this.properties = properties;
+        this.kafkaProperties = kafkaProperties;
     }
 
     @Bean
     public PoolingHttpClientConnectionManager poolingConnectionManager() {
         SSLContextBuilder builder = new SSLContextBuilder();
         try {
-            if (properties.getTrustStoreLocation() != null) {
-                builder.loadTrustMaterial(properties.getTrustStoreLocation().getURL(), properties.getTrustStorePassword(), new TrustAllStrategy());
+            if (kafkaProperties.getSsl().getTrustStoreLocation() != null) {
+                builder.loadTrustMaterial(kafkaProperties.getSsl().getTrustStoreLocation().getFile(), kafkaProperties.getSsl().getTrustStorePassword().toCharArray(), new TrustAllStrategy());
             } else {
                 builder.loadTrustMaterial(null, new TrustAllStrategy());
             }
@@ -111,23 +114,25 @@ public class HttpClientConfig {
     }
 
     @Bean
-    public Runnable idleConnectionMonitor(final PoolingHttpClientConnectionManager connectionManager) {
-        return new Runnable() {
-            @Override
-            @Scheduled(fixedDelay = 10000)
-            public void run() {
-                try {
-                    if (connectionManager != null) {
-                        LOGGER.trace("run IdleConnectionMonitor - Closing expired and idle connections...");
-                        connectionManager.closeExpiredConnections();
-                        connectionManager.closeIdleConnections(CLOSE_IDLE_CONNECTION_WAIT_TIME_SECS, TimeUnit.SECONDS);
-                    } else {
-                        LOGGER.trace("run IdleConnectionMonitor - Http Client Connection manager is not initialised");
-                    }
-                } catch (Exception e) {
-                    LOGGER.error("run IdleConnectionMonitor - Exception occurred. msg={}, e={}", e.getMessage(), e);
+    public ScheduledThreadPoolExecutor scheduledThreadPoolExecutor(final PoolingHttpClientConnectionManager connectionManager) {
+        Runnable runnable = () -> {
+            try {
+                if (connectionManager != null) {
+                    LOGGER.debug("run IdleConnectionMonitor - Closing expired and idle connections...");
+                    connectionManager.closeExpiredConnections();
+                    connectionManager.closeIdleConnections(CLOSE_IDLE_CONNECTION_WAIT_TIME_SECS, TimeUnit.SECONDS);
+                } else {
+                    LOGGER.debug("run IdleConnectionMonitor - Http Client Connection manager is not initialised");
                 }
+            } catch (Exception e) {
+                LOGGER.error("run IdleConnectionMonitor - Exception occurred. msg={}, e={}", e.getMessage(), e);
             }
         };
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(2);
+        executor.setMaximumPoolSize(10);
+        executor.scheduleWithFixedDelay(runnable, 1, 5, TimeUnit.MINUTES);
+        return executor;
     }
+
+
 }

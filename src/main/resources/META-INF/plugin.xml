@@ -2,7 +2,7 @@
     <id>com.github.aidensuen.kafkatool</id>
     <name>Kafkatool</name>
     <version>1.0.0</version>
-    <vendor email="AbnerSun2016@163.com">Aidensuen</vendor>
+    <vendor email="AbnerSun2016@163.com">AidenSuen</vendor>
     <description>
         Features:
         &lt;ul&gt;
@@ -15,7 +15,7 @@
         &lt;li&gt;Schema Registry Viewer&lt;/li&gt;
         &lt;/ul&gt;
     </description>
-    <idea-version since-build="171"/>
+    <idea-version since-build="193"/>
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
                 serviceImplementation="com.github.aidensuen.kafkatool.common.KafkaToolPersistentStateComponent"/>

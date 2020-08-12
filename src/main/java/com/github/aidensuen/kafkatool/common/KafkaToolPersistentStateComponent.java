@@ -7,10 +7,12 @@ import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.Nullable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
 import java.util.Objects;
-import java.util.Properties;
 
 @State(
         name = "KafkaToolPersistentStateComponent",
@@ -22,9 +24,9 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
     private FixedStack<ProducerHistoryEntry> producerHistoryDataStack = FixedStack.newFixedStack();
     private String schemaRegistryUrl = "http://localhost:8081";
     private String avroPackagePrefix = "com.example";
-    private String serializer = "KafkaAvroSerializer";
-    private Properties producerProperties = new Properties();
-    private Properties consumerProperties = new Properties();
+
+    @Autowired
+    private KafkaProperties kafkaProperties;
 
     @Nullable
     public KafkaToolPersistentStateComponent getState() {
@@ -41,8 +43,6 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
 
     public void setBootstrapServers(String bootstrapServers) {
         this.bootstrapServers = bootstrapServers;
-        this.producerProperties.put("bootstrap.servers", bootstrapServers);
-        this.consumerProperties.put("bootstrap.servers", bootstrapServers);
     }
 
     public FixedStack<ProducerHistoryEntry> getProducerHistoryDataStack() {
@@ -59,8 +59,6 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
 
     public void setSchemaRegistryUrl(String schemaRegistryUrl) {
         this.schemaRegistryUrl = schemaRegistryUrl;
-        this.producerProperties.put("schema.registry.url", schemaRegistryUrl);
-        this.consumerProperties.put("schema.registry.url", schemaRegistryUrl);
     }
 
     public void addProducerHistoryEntry(ProducerHistoryEntry producerHistoryEntry) {
@@ -75,37 +73,31 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
         this.avroPackagePrefix = avroPackagePrefix;
     }
 
-    public String getSerializer() {
-        return this.serializer;
-    }
-
-    public void setSerializer(String serializer) {
-        this.serializer = serializer;
-    }
-
-    public Properties getProducerProperties() {
+    public Map<String, Object> getProducerProperties() {
+        Map<String, Object> producerProperties = kafkaProperties.buildProducerProperties();
         producerProperties.putIfAbsent("schema.registry.url", this.getSchemaRegistryUrl());
         producerProperties.putIfAbsent("bootstrap.servers", this.getBootstrapServers());
         return producerProperties;
     }
 
-    public void setProducerProperties(Properties producerProperties) {
-        this.producerProperties.putAll(producerProperties);
-    }
 
-    public Properties getConsumerProperties() {
+    public Map<String, Object> getConsumerProperties() {
+        Map<String, Object> consumerProperties = kafkaProperties.buildProducerProperties();
         consumerProperties.putIfAbsent("schema.registry.url", this.getSchemaRegistryUrl());
         consumerProperties.putIfAbsent("bootstrap.servers", this.getBootstrapServers());
         return consumerProperties;
     }
 
-    public void setConsumerProperties(Properties consumerProperties) {
-        this.consumerProperties.putAll(consumerProperties);
+    public KafkaProperties getKafkaProperties() {
+        return kafkaProperties;
+    }
+
+    public void setKafkaProperties(KafkaProperties kafkaProperties) {
+        this.kafkaProperties = kafkaProperties;
     }
 
     public void refresh() {
-        this.producerProperties.clear();
-        this.consumerProperties.clear();
+
     }
 
     @Override
@@ -116,13 +108,12 @@ public class KafkaToolPersistentStateComponent implements PersistentStateCompone
         return Objects.equals(bootstrapServers, that.bootstrapServers) &&
                 Objects.equals(producerHistoryDataStack, that.producerHistoryDataStack) &&
                 Objects.equals(schemaRegistryUrl, that.schemaRegistryUrl) &&
-                Objects.equals(avroPackagePrefix, that.avroPackagePrefix) &&
-                Objects.equals(serializer, that.serializer);
+                Objects.equals(avroPackagePrefix, that.avroPackagePrefix);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bootstrapServers, producerHistoryDataStack, schemaRegistryUrl, avroPackagePrefix, serializer);
+        return Objects.hash(bootstrapServers, producerHistoryDataStack, schemaRegistryUrl, avroPackagePrefix);
     }
 }
 
